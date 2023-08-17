@@ -1,9 +1,12 @@
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <div className="flex items-center justify-between px-5 py-3 bg-slate-500">
-      <div>BRAND</div>
+      <Link href={"/"}>
+        <div>BRAND</div>
+      </Link>
       <SearchBar />
       <div className="flex gap-10">
         <button className="flex items-center gap-2 text-white">

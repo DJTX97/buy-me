@@ -5,7 +5,7 @@ interface StarRatingProps {
 const ProductRating = ({ rating }: StarRatingProps) => {
   const filledStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
-  console.log(filledStars);
+  //console.log(filledStars);
 
   return (
     <div className="flex items-center">

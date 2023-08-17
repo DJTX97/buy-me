@@ -14,7 +14,7 @@ interface HomePageProps {
 
 export default function HomePage({ data }: { data: HomePageProps[] }) {
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-0 p-10 2xl:p-40 bg-slate-400">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-0">
       {data.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

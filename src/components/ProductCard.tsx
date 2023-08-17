@@ -3,6 +3,7 @@ import ProductRating from "./ProductRating";
 
 interface ProductCardProps {
   product: {
+    id:number;
     title: string;
     price: number;
     category: string;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
+    <Link href={`/products/${product.category}/${product.id}`}>
     <div className="flex flex-col items-center p-2 border border-black h-96 2xl:h-2/3 rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white hover:scale-105 hover:cursor-pointer transition-all duration-110">
       <img
         src={product.image}
@@ -33,5 +35,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }

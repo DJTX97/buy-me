@@ -31,8 +31,8 @@ const ProductRating = ({ rating }: StarRatingProps) => {
         >
           <defs>
             <linearGradient id="grad">
-              <stop offset="50%" stop-color="rgb(234,179,8)" />
-              <stop offset="50%" stop-color="lightgrey" />
+              <stop offset="50%" stopColor="rgb(234,179,8)" />
+              <stop offset="50%" stopColor="lightgrey" />
             </linearGradient>
           </defs>
           <path

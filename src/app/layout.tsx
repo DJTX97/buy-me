@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   icons: "", //path to favicon
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

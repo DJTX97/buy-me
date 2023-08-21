@@ -2,22 +2,38 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { fetchData } from "@/utils/dataFetchingKit";
 
-interface SearchBarProps {
-  id: number;
+interface Product {
+  id: string;
   title: string;
+  price: number;
+  description: string;
   category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
 }
 
-export default function SearchBar({
-  products,
-}: {
-  products: SearchBarProps[];
-}) {
+
+export default function SearchBar() {
 
   const router = useRouter();
 
+  const [products, setProducts] = useState<Array<Product>>([]);
+
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await fetchData("https://fakestoreapi.com/products");
+      setProducts(data);
+    }
+
+    fetchProducts();
+  }, []);
 
 
   // Navigate to product page if input matches product

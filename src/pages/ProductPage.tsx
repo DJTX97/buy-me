@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ProductRating from "@/components/ProductRating";
+import { CartContext } from "@/components/CartContext";
 
 
 interface Item {
@@ -26,6 +27,19 @@ interface ProductPageProps {
 
 
 export default function ProductPage({ params, product }: ProductPageProps) {
+
+  const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      product,
+      amount
+    };
+    addToCart(cartItem);
+  };
+
+
+
   const [amount, setAmount] = useState<number>(0);
 
   const updateAmount = (event: any) => {
@@ -91,7 +105,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
               </button>
             </div>
           </div>
-          <button className="mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700">
+          <button onClick={handleAddToCart} className="mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700">
             Add to cart
           </button>
         </div>

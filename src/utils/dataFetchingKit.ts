@@ -15,3 +15,6 @@ export const fetchData = async (url: string) => {
   const data = await res.json();
   return data;
 };
+
+
+

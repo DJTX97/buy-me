@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import Link from "next/link";
 import { fetchData } from "@/utils/dataFetchingKit";
 
+
 export default async function Header() {
   const data = await fetchData("https://fakestoreapi.com/products");
   return (
@@ -11,24 +12,24 @@ export default async function Header() {
       </Link>
       <SearchBar products={data} />
       <div className="flex gap-10">
-        <button className="flex items-center gap-2 text-white">
-          <svg
-            className="h-6"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 20"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
-            />
-          </svg>
-          <div className="hidden md:block">Cart</div>
-        </button>
+      <button className="flex items-center gap-2 text-white">
+        <svg
+          className="h-6"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 18 20"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
+          />
+        </svg>
+        <div className="hidden md:block">Cart</div>
+      </button>
         <button className="flex items-center gap-2 text-white">
           <svg
             className="h-6"

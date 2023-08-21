@@ -47,7 +47,7 @@ export default function SearchBar({
     };
   }, []);
 
-  console.log(products);
+  //console.log(products);
   return (
     <>
       <div className="flex w-1/2 bg-white rounded-2xl">

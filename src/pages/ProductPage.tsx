@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 import ProductRating from "@/components/ProductRating";
 import { CartContext } from "@/components/CartContext";
 
-
 interface Item {
   id: string;
   title: string;
@@ -25,20 +24,18 @@ interface ProductPageProps {
   product: Item;
 }
 
-
 export default function ProductPage({ params, product }: ProductPageProps) {
-
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    const cartItem = {
-      product,
-      amount
-    };
-    addToCart(cartItem);
+    if (amount > 0) {
+      const cartItem = {
+        product,
+        amount,
+      };
+      addToCart(cartItem);
+    }
   };
-
-
 
   const [amount, setAmount] = useState<number>(0);
 
@@ -50,8 +47,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
     if (event.target.value === 0 || re.test(event.target.value)) {
       setAmount(parseInt(event.target.value));
     }
-  }
-
+  };
 
   // console.log(params);
   // console.log(product);
@@ -82,7 +78,10 @@ export default function ProductPage({ params, product }: ProductPageProps) {
           <div className="flex">
             <b>Amount:</b>
             <div className="ml-2 text-base">
-              <button onClick={() => amount >= 1 && setAmount(amount - 1)} className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200">
+              <button
+                onClick={() => amount >= 1 && setAmount(amount - 1)}
+                className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
+              >
                 {" "}
                 -{" "}
               </button>
@@ -99,13 +98,19 @@ export default function ProductPage({ params, product }: ProductPageProps) {
                 }}
                 className="h-full w-20 px-2 border border-black outline-none"
               />
-              <button onClick={() => setAmount(amount + 1)} className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200">
+              <button
+                onClick={() => setAmount(amount + 1)}
+                className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
+              >
                 {" "}
                 +{" "}
               </button>
             </div>
           </div>
-          <button onClick={handleAddToCart} className="mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700">
+          <button
+            onClick={handleAddToCart}
+            className="mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700"
+          >
             Add to cart
           </button>
         </div>

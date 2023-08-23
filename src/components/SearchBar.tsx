@@ -94,7 +94,7 @@ export default function SearchBar() {
         </button>
       </div>
       {search && (
-        <div className="absolute z-10 top-12 left-64 w-[35rem] rounded-lg bg-white">
+        <div className="absolute z-10 top-12 left-5 md:left-32 lg:left-64 lg:w-[35rem] rounded-lg bg-white shadow-lg">
           {products
             .filter(
               (product) =>

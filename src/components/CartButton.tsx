@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../providers/CartContext";
 import CartDisplay from "./CartDisplay";
 
 export default function CartButton() {

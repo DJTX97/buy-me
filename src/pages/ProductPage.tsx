@@ -1,7 +1,8 @@
 "use client";
 import { useState, useContext } from "react";
 import ProductRating from "@/components/ProductRating";
-import { CartContext } from "@/components/CartContext";
+import { CartContext } from "@/providers/CartContext";
+import AmountCounter from "@/components/AmountCounter";
 
 interface Item {
   id: string;
@@ -27,6 +28,8 @@ interface ProductPageProps {
 export default function ProductPage({ params, product }: ProductPageProps) {
   const { addToCart } = useContext(CartContext);
 
+  const [amount, setAmount] = useState<number>(0);
+
   const handleAddToCart = () => {
     if (amount > 0) {
       const cartItem = {
@@ -37,17 +40,6 @@ export default function ProductPage({ params, product }: ProductPageProps) {
     }
   };
 
-  const [amount, setAmount] = useState<number>(0);
-
-  const updateAmount = (event: any) => {
-    const re = /^[0-9\b]+$/;
-
-    // if value is not blank, then test the regex
-
-    if (event.target.value === 0 || re.test(event.target.value)) {
-      setAmount(parseInt(event.target.value));
-    }
-  };
 
   // console.log(params);
   // console.log(product);
@@ -61,63 +53,32 @@ export default function ProductPage({ params, product }: ProductPageProps) {
           alt="image"
         />
         <div className="flex flex-col gap-5 lg:w-1/2 mx-10 md:my-7 p-5 border-2 border-black rounded-xl">
-          <div>
-            <b>Category:</b> {product.category}
+          <div className="md:flex items-center gap-2">
+            <div className="font-extrabold">Category:</div> {product.category}
           </div>
           <div className="md:flex items-center gap-2">
-            <b>Rating:</b>
+            <div className="font-extrabold">Rating:</div>
             <ProductRating rating={product.rating.rate} />{" "}
             <div className="flex items-center border-b-2 border-black border-dotted text-lg">
               {product.rating.rate} ({product.rating.count} reviews)
             </div>
           </div>
           <div className="flex gap-3">
-            <b>Price:</b>{" "}
+            <div className="font-extrabold">Price:</div>{" "}
             <div className="font-bold text-red-500">${product.price}</div>
           </div>
-          <div className="flex">
-            <b>Amount:</b>
-            <div className="ml-2 text-base">
-              <button
-                onClick={() => amount >= 1 && setAmount(amount - 1)}
-                className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
-              >
-                {" "}
-                -{" "}
-              </button>
-              <input
-                type="number"
-                min={1}
-                value={amount}
-                onChange={updateAmount}
-                //onClick={() => {}}
-                style={{
-                  appearance: "textfield",
-                  MozAppearance: "textfield",
-                  WebkitAppearance: "textfield",
-                }}
-                className="h-full w-20 px-2 border border-black outline-none"
-              />
-              <button
-                onClick={() => setAmount(amount + 1)}
-                className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
-              >
-                {" "}
-                +{" "}
-              </button>
-            </div>
-          </div>
+          <AmountCounter amount={amount} setAmount={setAmount} />
           <button
             onClick={handleAddToCart}
-            className="mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700"
+            className="md:mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700"
           >
             Add to cart
           </button>
         </div>
       </div>
-      <div className="self-center h-[2px] w-11/12 bg-black"></div>
+      <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>
       <div className="flex flex-col gap-3 px-10 my-5 md:mb-5 md:mt-2">
-        <b className="text-3xl">Details:</b>
+        <div className="text-3xl font-extrabold">Details:</div>
         <div className="font-normal">{product.description}</div>
       </div>
     </div>

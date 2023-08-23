@@ -1,7 +1,6 @@
-"use client";
-import { useState, useContext } from "react";
 import ProductRating from "@/components/ProductRating";
-import { CartContext } from "@/providers/CartContext";
+import AddToCartBtn from "@/components/AddToCartBtn";
+import { AmountTracker } from "@/providers/AmountTracker";
 import AmountCounter from "@/components/AmountCounter";
 
 interface Item {
@@ -26,20 +25,6 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params, product }: ProductPageProps) {
-  const { addToCart } = useContext(CartContext);
-
-  const [amount, setAmount] = useState<number>(0);
-
-  const handleAddToCart = () => {
-    if (amount > 0) {
-      const cartItem = {
-        product,
-        amount,
-      };
-      addToCart(cartItem);
-    }
-  };
-
 
   // console.log(params);
   // console.log(product);
@@ -67,13 +52,10 @@ export default function ProductPage({ params, product }: ProductPageProps) {
             <div className="font-extrabold">Price:</div>{" "}
             <div className="font-bold text-red-500">${product.price}</div>
           </div>
-          <AmountCounter amount={amount} setAmount={setAmount} />
-          <button
-            onClick={handleAddToCart}
-            className="md:mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700"
-          >
-            Add to cart
-          </button>
+          <AmountTracker>
+            <AmountCounter />
+            <AddToCartBtn product={product} />
+          </AmountTracker>
         </div>
       </div>
       <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>

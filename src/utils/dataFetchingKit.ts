@@ -1,7 +1,7 @@
 export const options = {
   method: "GET",
   next: {
-    revalidate: 300,
+    revalidate: 3600,
   },
 };
 

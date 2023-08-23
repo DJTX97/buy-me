@@ -1,12 +1,10 @@
-interface AmountCounterProps {
-  amount: number;
-  setAmount: React.Dispatch<React.SetStateAction<number>>;
-}
+"use client";
+import { useContext } from "react";
+import { AmountContext } from "@/providers/AmountTracker";
 
-export default function AmountCounter({
-  amount,
-  setAmount,
-}: AmountCounterProps) {
+export default function AmountCounter() {
+  const { amount, setAmount } = useContext(AmountContext);
+
   const incrementAmount = () => {
     setAmount(amount + 1);
   };

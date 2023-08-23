@@ -11,6 +11,7 @@ export default function Header() {
       <SearchBar />
       <div className="flex gap-10">
         <CartButton />
+
         <button className="flex items-center gap-2 text-white">
           <svg
             className="h-6"

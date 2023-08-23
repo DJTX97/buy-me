@@ -17,7 +17,7 @@ export default function CartButton() {
     <>
       <button
         onClick={() => setShowCart(!showCart)}
-        className="flex items-center gap-2 text-white"
+        className="relative flex items-center gap-2 text-white"
       >
         <svg
           className="h-6"
@@ -34,9 +34,17 @@ export default function CartButton() {
             d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
           />
         </svg>
-        <div className="hidden md:block">Cart ({cartItems.length})</div>
+
+        <div className="">Cart</div>
+        {cartItems.length > 0 && (
+          <div className="absolute top-3 left-[3.7rem] flex justify-center items-center h-4 w-4 bg-pink-600 rounded-full text-xs">
+            {cartItems.length}
+          </div>
+        )}
       </button>
-      {showCart && <CartDisplay />}
+      {showCart && (
+        <CartDisplay showCart={showCart} setShowCart={setShowCart} />
+      )}
     </>
   );
 }

@@ -2,6 +2,7 @@ import ProductRating from "@/components/ProductRating";
 import AddToCartBtn from "@/components/AddToCartBtn";
 import { AmountTracker } from "@/providers/AmountTracker";
 import AmountCounter from "@/components/AmountCounter";
+import ReviewSection from "@/components/ReviewSection";
 
 interface Item {
   id: string;
@@ -63,6 +64,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
         <div className="text-3xl font-extrabold">Details:</div>
         <div className="font-normal">{product.description}</div>
       </div>
+      <ReviewSection/>
     </div>
   );
 }

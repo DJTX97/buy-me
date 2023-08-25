@@ -16,7 +16,7 @@ export default function CartButton() {
   return (
     <>
       <button
-        onClick={() => setShowCart(!showCart)}
+        onClick={() => setShowCart((prev) => !prev)}
         className="relative flex items-center gap-2 text-white"
       >
         <svg

@@ -37,7 +37,7 @@ export default function CartDisplay({
         <div className="absolute z-10 top-14 right-10 sm:right-28 md:right-40 flex flex-col gap-3 p-3 rounded-lg border border-slate-300 bg-white shadow-lg">
           {cartItems.map((item, index) => {
             return (
-              <div className="flex gap-3 font-semibold" key={index}>
+              <div className="flex gap-3 justify-between font-semibold" key={index}>
                 <img
                   src={item.product.image}
                   className="h-16 w-16 h self-center"
@@ -47,25 +47,28 @@ export default function CartDisplay({
                   {item.product.title}
                 </div>
 
-                <div className="flex flex-col gap-1 items-center text-center">
-                  <div>Amount: {item.amount}</div>
-                  <div>Price: ${item.product.price * item.amount}</div>
-                  <button
-                    onClick={() => {
-                      handleDelete(index);
-                    }}
-                    className="p-1 bg-black text-white rounded-3xl hover:bg-gray-700"
-                  >
-                    DELETE
-                  </button>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-full">Amount: {item.amount}</div>
+                  <div>${item.product.price * item.amount}</div>
+                  <div className="flex justify-center h-full w-full">
+                    <button
+                      onClick={() => {
+                        handleDelete(index);
+                      }}
+                      className="h-8 p-1 bg-black text-white rounded-3xl hover:bg-gray-700"
+                    >
+                      DELETE
+                    </button>
+                  </div>
                 </div>
               </div>
             );
           })}
-          <div className="text-center text-2xl font-bold text-red-500">TOTAL: ${cartTotal}</div>
+          <div className="text-center text-2xl font-bold text-red-500">
+            TOTAL: ${cartTotal}
+          </div>
         </div>
       )}
     </>
   );
 }
-

@@ -29,7 +29,9 @@ export const CartContext = createContext<CartContextValue>({
   removeFromCart: () => {},
 });
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (item: CartItem) => {
@@ -37,11 +39,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const removeFromCart = (itemIndex: number) => {
-    const updatedCartItems = cartItems.filter((item, index) => index !== itemIndex);
+    const updatedCartItems = cartItems.filter(
+      (item, index) => index !== itemIndex
+    );
     setCartItems(updatedCartItems);
   };
-  
-  
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
@@ -49,4 +51,3 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     </CartContext.Provider>
   );
 };
-

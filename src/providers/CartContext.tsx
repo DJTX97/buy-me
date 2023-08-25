@@ -20,7 +20,7 @@ interface CartItem {
 interface CartContextValue {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (itemId: string) => void;
+  removeFromCart: (itemIndex: number) => void;
 }
 
 export const CartContext = createContext<CartContextValue>({
@@ -36,9 +36,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCartItems([...cartItems, item]);
   };
 
-  const removeFromCart = (itemId: string) => {
-    setCartItems(cartItems.filter((item) => item.product.id !== itemId));
+  const removeFromCart = (itemIndex: number) => {
+    const updatedCartItems = cartItems.filter((item, index) => index !== itemIndex);
+    setCartItems(updatedCartItems);
   };
+  
+  
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>

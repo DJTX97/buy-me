@@ -25,10 +25,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         alt="image"
       />
       <div className="h-1/2 w-full p-2 rounded-b-lg">
-        <div>{product.title}</div>
-        <div>Category: {product.category}</div>
-        <div>Price: ${product.price}</div>
-        <div className="flex gap-1">
+        <div className="font-bold">{product.title}</div>
+        <div className="italic">{product.category}</div>
+        <div className="font-bold">Price: ${product.price}</div>
+        <div className="flex gap-1 font-bold">
           Rating:
           <ProductRating rating={product.rating.rate} />
           {product.rating.rate}

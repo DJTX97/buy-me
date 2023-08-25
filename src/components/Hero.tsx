@@ -22,7 +22,7 @@ export default function Hero() {
         className="border-4 border-black rounded-lg"
       >
         {images.map((image, index) => (
-          <div className="h-[35rem] bg-black" key={index}>
+          <div className="h-full sm:h-96 md:h-[35rem] bg-black" key={index}>
             <img
               className="h-full rounded-lg"
               src={image}

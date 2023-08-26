@@ -1,9 +1,8 @@
+import HomePage from "@/pages/HomePage";
+import { fetchData } from "@/utils/dataFetchingKit";
 
+export default async function Home() {
+  const data = await fetchData("https://fakestoreapi.com/products");
 
-export default function Home() {
-  return (
-    <div>
-      <div className="bg-slate-400">Hello</div>
-    </div>
-  );
+  return <HomePage data={data} />;
 }

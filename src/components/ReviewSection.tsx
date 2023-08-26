@@ -6,7 +6,7 @@ import ProductRating from "./ProductRating";
 import ReviewDate from "./ReviewDate";
 
 interface ReviewSectionProps {
-  reviewCount: number;
+  ratingCount: number;
 }
 
 interface Post {
@@ -16,7 +16,7 @@ interface Post {
   body: string;
 }
 
-export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
+export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
   const [reviews, setReviews] = useState<Array<Post>>([]);
   const contentRef = useRef<HTMLDivElement>(null); // ref to the content container
   const [batch, setBatch] = useState<number>(5); //reviews to be loaded on next batch
@@ -39,15 +39,16 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
         `https://jsonplaceholder.typicode.com/comments`
       );
 
-      if (data.length > reviewCount) {
-        setReviews(data.slice(0, reviewCount));
+      if (data.length > ratingCount) {
+        setReviews(data.slice(0, ratingCount));
       } else {
         setReviews(data);
       }
     };
 
     fetchReviews();
-  }, []);
+    console.log(ratingCount);
+  }, [ratingCount]);
 
   //check for reviews
   // useEffect(() => {

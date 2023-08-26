@@ -1,6 +1,6 @@
 
 //get random rating count
-export const createReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
+export const getRandomReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
 
 //Get random user rating
 export const getRandomUserRating = (): number => Math.floor(Math.random() * 5) + 1;

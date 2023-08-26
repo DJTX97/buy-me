@@ -39,7 +39,7 @@ export default function CartDisplay({
             return (
               <div className="flex gap-3 justify-between font-semibold" key={index}>
                 <img
-                  src={item.product.image}
+                  src={item.product.thumbnail}
                   className="h-16 w-16 h self-center"
                   alt="img"
                 />

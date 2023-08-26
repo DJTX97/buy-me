@@ -8,8 +8,9 @@ interface Params {
 
 export default async function Product({ params }: { params: Params }) {
   const data = await fetchData(
-    `https://fakestoreapi.com/products/${params.product[0]}`
+    `https://dummyjson.com/products/${params.product[0]}`
   );
-  //console.log(params);
+  console.log(params);
+  console.log(data)
   return <ProductPage params={params} product={data} />;
 }

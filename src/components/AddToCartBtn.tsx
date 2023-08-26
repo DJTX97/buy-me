@@ -5,16 +5,13 @@ import { AmountContext } from "@/providers/AmountTracker";
 
 interface AddToCartBtnProps {
   product: {
-    id: string;
+    id: number;
     title: string;
-    price: number;
     description: string;
+    price: number;
     category: string;
-    image: string;
-    rating: {
-      rate: number;
-      count: number;
-    };
+    thumbnail: string;
+    rating: number;
   };
 }
 

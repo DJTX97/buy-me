@@ -28,8 +28,8 @@ export default function SearchBar() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await fetchData("https://fakestoreapi.com/products");
-      setProducts(data);
+      const data = await fetchData("https://dummyjson.com/products?limit=100");
+      setProducts(data.products);
     }
 
     fetchProducts();

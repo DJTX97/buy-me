@@ -44,6 +44,7 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
       } else {
         setReviews(data);
       }
+      
     };
 
     fetchReviews();

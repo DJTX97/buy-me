@@ -3,16 +3,13 @@ import { createContext, useState } from "react";
 
 interface CartItem {
   product: {
-    id: string;
+    id: number;
     title: string;
-    price: number;
     description: string;
+    price: number;
     category: string;
-    image: string;
-    rating: {
-      rate: number;
-      count: number;
-    };
+    thumbnail: string;
+    rating: number;
   };
   amount: number;
 }

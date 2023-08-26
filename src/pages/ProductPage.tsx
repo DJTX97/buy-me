@@ -5,16 +5,13 @@ import AmountCounter from "@/components/AmountCounter";
 import ReviewSection from "@/components/ReviewSection";
 
 interface Item {
-  id: string;
+  id: number;
   title: string;
-  price: number;
   description: string;
+  price: number;
   category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
+  thumbnail: string;
+  rating: number;
 }
 
 interface ProductPageProps {
@@ -27,15 +24,19 @@ interface ProductPageProps {
 
 export default function ProductPage({ params, product }: ProductPageProps) {
 
+  const createReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
+  const reviewCount = createReviewCount(10)
+  console.log(reviewCount)
+
   // console.log(params);
-  // console.log(product);
+  //console.log(product);
   return (
     <div className="flex flex-col border border-black bg-white rounded-xl text-2xl font-semibold">
       <div className="p-8 text-3xl md:text-6xl">{product.title}</div>
       <div className="flex flex-col lg:flex-row">
         <img
           className="h-80 sm:h-96 md:h-[28rem] lg:w-1/2 m-10 lg:m-5 sm:p-10"
-          src={product.image}
+          src={product.thumbnail}
           alt="image"
         />
         <div className="flex flex-col gap-5 lg:w-1/2 mx-10 md:my-7 p-5 border-2 border-black rounded-xl">
@@ -44,9 +45,9 @@ export default function ProductPage({ params, product }: ProductPageProps) {
           </div>
           <div className="md:flex items-center gap-2">
             <div className="font-extrabold">Rating:</div>
-            <ProductRating rating={product.rating.rate} />{" "}
+            <ProductRating rating={product.rating} />{" "}
             <div className="flex items-center border-b-2 border-black border-dotted text-lg">
-              {product.rating.rate} ({product.rating.count} reviews)
+              {product.rating} ({reviewCount} reviews)
             </div>
           </div>
           <div className="flex gap-3">
@@ -64,7 +65,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
         <div className="text-3xl font-extrabold">Details:</div>
         <div className="font-normal">{product.description}</div>
       </div>
-      <ReviewSection reviewCount={product.rating.count} />
+      <ReviewSection reviewCount={reviewCount} />
     </div>
   );
 }

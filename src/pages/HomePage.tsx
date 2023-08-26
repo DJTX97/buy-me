@@ -6,11 +6,8 @@ interface HomePageProps {
   title: string;
   price: number;
   category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
+  thumbnail: string;
+  rating: number;
 }
 
 export default function HomePage({ data }: { data: HomePageProps[] }) {

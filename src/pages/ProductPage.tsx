@@ -64,7 +64,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
         <div className="text-3xl font-extrabold">Details:</div>
         <div className="font-normal">{product.description}</div>
       </div>
-      <ReviewSection/>
+      <ReviewSection reviewCount={product.rating.count} />
     </div>
   );
 }

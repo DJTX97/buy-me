@@ -1,10 +1,16 @@
+"use client";
+import { useState } from "react";
+
 interface StarRatingProps {
   rating: number;
 }
 
 const ProductRating = ({ rating }: StarRatingProps) => {
-  const filledStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 !== 0;
+  //Store the rating in an internal state to avoid changing values in the case of randomized data
+  const [stars, setStars] = useState(rating);
+
+  const filledStars = Math.floor(stars);
+  const hasHalfStar = stars % 1 !== 0;
   //console.log(filledStars);
 
   return (

@@ -20,11 +20,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <CartProvider>
-      <body>
-        <Header />
-        <div className="p-10 2xl:p-40 bg-slate-400">{children}</div>
-        <Footer />
-      </body>
+        <body>
+          <Header />
+          <div className="p-10 2xl:p-40 bg-slate-400">{children}</div>
+          <Footer />
+        </body>
       </CartProvider>
     </html>
   );

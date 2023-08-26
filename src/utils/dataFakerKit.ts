@@ -1,0 +1,18 @@
+
+//get random rating count
+export const createReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
+
+//Get random user rating
+export const getRandomUserRating = (): number => Math.floor(Math.random() * 5) + 1;
+
+//Get random date
+export const getRandomDate = (): string => {
+  const start = new Date(1970, 0, 1); // Start date (January 1, 1970)
+  const end = new Date(); // Current date
+
+  const randomTimestamp =
+    Math.random() * (end.getTime() - start.getTime()) + start.getTime();
+  const randomDate = new Date(randomTimestamp);
+
+  return randomDate.toLocaleDateString("en-UK");
+};

@@ -17,9 +17,7 @@ interface Product {
   };
 }
 
-
 export default function SearchBar() {
-
   const router = useRouter();
 
   const [products, setProducts] = useState<Array<Product>>([]);
@@ -30,17 +28,15 @@ export default function SearchBar() {
     const fetchProducts = async () => {
       const data = await fetchData("https://dummyjson.com/products?limit=100");
       setProducts(data.products);
-    }
+    };
 
     fetchProducts();
   }, []);
 
-
   // Navigate to product page if input matches product
   const handleButtonClick = () => {
     const matchingProduct = products.find(
-      (product) =>
-        product.title.toLowerCase() === search.toLowerCase()
+      (product) => product.title.toLowerCase() === search.toLowerCase()
     );
 
     if (matchingProduct) {
@@ -75,7 +71,10 @@ export default function SearchBar() {
           //onClick={(e) => setSearch("")}
           className="h-10 w-full px-3 border-y border-l border-black rounded-l-2xl outline-none"
         />
-        <button onClick={handleButtonClick} className="flex justify-center items-center w-12 border-y border-r border-black rounded-r-2xl hover:bg-gray-200">
+        <button
+          onClick={handleButtonClick}
+          className="flex justify-center items-center w-12 border-y border-r border-black rounded-r-2xl hover:bg-gray-200"
+        >
           <svg
             className="h-4 dark:text-white"
             aria-hidden="true"
@@ -105,7 +104,10 @@ export default function SearchBar() {
             )
             .map((product) => (
               <Link href={`/products/${product.category}/${product.id}`}>
-                <div key={product.id} className="p-3 border-t border-gray-200 rounded-lg hover:bg-gray-200">
+                <div
+                  key={product.id}
+                  className="p-3 border-t border-gray-200 rounded-lg hover:bg-gray-200"
+                >
                   {product.title}
                 </div>
               </Link>

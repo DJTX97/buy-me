@@ -7,4 +7,4 @@ const images = [
   "Ventura-5Reasons-Featured-r1.jpg",
 ];
 
-export const heroPath = images.map((image) => folder + image);
+export const heroPaths = images.map((image) => folder + image);

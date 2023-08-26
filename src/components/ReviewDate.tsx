@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
+import { getRandomDate } from "@/utils/dataFakerKit";
 
-interface ReviewDateProps {
-  date: string;
-}
 
-export default function ReviewDate({ date }: ReviewDateProps) {
-  const [postDate, setPostDate] = useState(date);
+export default function ReviewDate() {
+  const [postDate, setPostDate] = useState(getRandomDate());
   return <>{postDate}</>;
 }

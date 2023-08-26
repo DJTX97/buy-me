@@ -3,6 +3,7 @@ import AddToCartBtn from "@/components/AddToCartBtn";
 import { AmountTracker } from "@/providers/AmountTracker";
 import AmountCounter from "@/components/AmountCounter";
 import ReviewSection from "@/components/ReviewSection";
+import { createReviewCount } from "@/utils/dataFakerKit";
 
 interface Item {
   id: number;
@@ -23,13 +24,8 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params, product }: ProductPageProps) {
+  const reviewCount = createReviewCount(10);
 
-  const createReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
-  const reviewCount = createReviewCount(10)
-  //console.log(reviewCount)
-
-  // console.log(params);
-  //console.log(product);
   return (
     <div className="flex flex-col border border-black bg-white rounded-xl text-2xl font-semibold">
       <div className="p-8 text-3xl md:text-6xl">{product.title}</div>

@@ -37,7 +37,10 @@ export default function CartDisplay({
         <div className="absolute z-10 top-14 right-10 sm:right-28 md:right-40 flex flex-col gap-3 p-3 rounded-lg border border-slate-300 bg-white shadow-lg">
           {cartItems.map((item, index) => {
             return (
-              <div className="flex gap-3 justify-between font-semibold" key={index}>
+              <div
+                className="flex gap-3 justify-between font-semibold"
+                key={index}
+              >
                 <img
                   src={item.product.thumbnail}
                   className="h-16 w-16 h self-center"

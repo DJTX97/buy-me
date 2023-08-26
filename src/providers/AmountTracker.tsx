@@ -19,7 +19,6 @@ export const AmountContext = createContext<AmountContextProps>({
 
 //Create provider
 export const AmountTracker: React.FC<AmountTrackerProps> = ({ children }) => {
-
   //Set ininital amount state
   const [amount, setAmount] = useState<number>(0);
 

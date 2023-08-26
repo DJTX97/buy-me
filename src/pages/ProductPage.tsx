@@ -26,7 +26,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
 
   const createReviewCount = (max: number) => Math.floor(Math.random() * (max + 1))
   const reviewCount = createReviewCount(10)
-  console.log(reviewCount)
+  //console.log(reviewCount)
 
   // console.log(params);
   //console.log(product);

@@ -9,9 +9,9 @@ export default function CartButton() {
   const [showCart, setShowCart] = useState(false);
 
   //Check cart content
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   console.log(cartItems);
+  // }, [cartItems]);
 
   return (
     <>

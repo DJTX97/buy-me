@@ -51,9 +51,9 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
   }, []);
 
   //check for reviews
-  useEffect(() => {
-    console.log(reviews);
-  }, [reviews]);
+  // useEffect(() => {
+  //   console.log(reviews);
+  // }, [reviews]);
 
   //scroll to top on re-render
   useEffect(() => {

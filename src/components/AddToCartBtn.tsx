@@ -27,7 +27,7 @@ export default function AddToCartBtn({ product }: AddToCartBtnProps) {
       };
       addToCart(cartItem);
     }
-    console.log(product);
+    //console.log(product);
   };
   return (
     <button

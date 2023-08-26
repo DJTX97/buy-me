@@ -10,7 +10,7 @@ export default async function Product({ params }: { params: Params }) {
   const data = await fetchData(
     `https://dummyjson.com/products/${params.product[0]}`
   );
-  console.log(params);
-  console.log(data)
+  // console.log(params);
+  // console.log(data)
   return <ProductPage params={params} product={data} />;
 }

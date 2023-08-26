@@ -6,7 +6,9 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between px-5 py-3 bg-slate-500">
       <Link href={"/"}>
-        <div className="text-white">BRAND</div>
+        <div>
+          <img className="h-16" src="/assets/favicon/brand.png" alt="" />
+        </div>
       </Link>
       <SearchBar />
       <div className="flex gap-10">

@@ -5,9 +5,11 @@ import Footer from "@/components/Footer";
 import { CartProvider } from "@/providers/CartContext";
 
 export const metadata: Metadata = {
-  title: "PC Hub",
+  title: "BuyMe",
   description: "Best place to buy your next PC",
-  icons: "", //path to favicon
+  icons: {
+    icon: "/assets/favicon/brand.png",
+  }, //path to favicon
 };
 
 export default async function RootLayout({

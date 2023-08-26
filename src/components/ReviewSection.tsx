@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchData } from "@/utils/dataFetchingKit";
 import ProductRating from "./ProductRating";
+import ReviewDate from "./ReviewDate";
 
 interface ReviewSectionProps {
   reviewCount: number;
@@ -20,6 +21,7 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
   const [reviews, setReviews] = useState<Array<Post>>([]);
   const contentRef = useRef<HTMLDivElement>(null); // ref to the content container
   const [next, setNext] = useState<number>(reviewsPerBatch); //reviews to be loaded on next batch
+
 
   const scrollToBottom = () => {
     if (contentRef.current) {
@@ -44,7 +46,6 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
       } else {
         setReviews(data);
       }
-      
     };
 
     fetchReviews();
@@ -67,6 +68,18 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
   //Get random rating
   const randomRating = () => Math.floor(Math.random() * 5) + 1;
 
+  //Get random date
+  const getRandomDate = (): string => {
+    const start = new Date(1970, 0, 1); // Start date (January 1, 1970)
+    const end = new Date(); // Current date
+
+    const randomTimestamp =
+      Math.random() * (end.getTime() - start.getTime()) + start.getTime();
+    const randomDate = new Date(randomTimestamp)
+
+    return randomDate.toLocaleDateString('en-US');
+  };
+
   return (
     <>
       <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>
@@ -75,7 +88,7 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
         <div className="flex flex-col gap-8 p-5 font-normal">
           {reviews.length !== 0 ? (
             reviews.slice(0, next).map((post, index) => (
-              <div className="flex border-b border-slate-300" key={index}>
+              <div className="flex p-3 border-b border-slate-300" key={index}>
                 <div className="flex flex-col justify-center gap-2 w-1/6">
                   <div>
                     <img
@@ -86,6 +99,9 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
                   </div>
                   <div className="text-base font-bold">
                     {post.email.split("@")[0]}
+                  </div>
+                  <div className="text-xs font-bold">
+                    <ReviewDate date={getRandomDate()} />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1 w-5/6 pb-5">

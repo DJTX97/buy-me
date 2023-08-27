@@ -1,10 +1,12 @@
 import Link from "next/link";
 import ProductRating from "./ProductRating";
+import AddToCartBtn from "./AddToCartBtn";
 
 interface ProductCardProps {
   product: {
     id: number;
     title: string;
+    description: string;
     price: number;
     category: string;
     thumbnail: string;
@@ -13,15 +15,20 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+
+  const productPageUrl = `/products/${product.category}/${product.id}`
+
   return (
-    <Link href={`/products/${product.category}/${product.id}`}>
-      <div className="flex flex-col items-center p-2 border border-black h-96 2xl:h-2/3 rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white hover:scale-105 hover:cursor-pointer transition-all duration-110">
+      <div className="flex flex-col items-center p-2 border border-black h-96 2xl:h-2/3 rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white hover:scale-105 transition-all duration-110">
+      <Link className="h-1/2 w-full" href={productPageUrl}>
         <img
           src={product.thumbnail}
-          className="h-3/4 w-full rounded-lg"
+          className="h-full w-full rounded-lg"
           alt="image"
         />
-        <div className="h-1/2 w-full p-2 rounded-b-lg">
+      </Link>
+        <div className="relative flex flex-col h-1/2 w-full p-2 rounded-b-lg">
+          <Link href={productPageUrl}>
           <div className="font-bold">{product.title}</div>
           <div className="italic">{product.category}</div>
           <div className="font-bold">Price: ${product.price}</div>
@@ -30,8 +37,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             <ProductRating rating={product.rating} />
             {product.rating}
           </div>
+          </Link>
+          <AddToCartBtn product={product} condensed/>
         </div>
       </div>
-    </Link>
   );
 }

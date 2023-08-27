@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 interface HomePageProps {
   id: number;
   title: string;
+  description: string;
   price: number;
   category: string;
   thumbnail: string;

@@ -5,7 +5,7 @@ import { heroPaths } from "@/utils/externalAssetsHub";
 
 export default function Hero() {
   return (
-    <div className="mb-10">
+    <div>
       <Carousel
         showThumbs={false}
         showStatus={false}

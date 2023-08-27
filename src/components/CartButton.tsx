@@ -35,9 +35,9 @@ export default function CartButton() {
           />
         </svg>
 
-        <div className="">Cart</div>
+        <div className="hidden md:block">Cart</div>
         {cartItems.length > 0 && (
-          <div className="absolute top-3 left-[3.7rem] flex justify-center items-center h-4 w-4 bg-pink-600 rounded-full text-xs">
+          <div className="absolute top-3 left-5 md:left-[3.7rem] flex justify-center items-center h-4 w-4 bg-pink-600 rounded-full text-xs">
             {cartItems.length}
           </div>
         )}

@@ -7,7 +7,7 @@ export const getRandomUserRating = (): number => Math.floor(Math.random() * 5) +
 
 //Get random date
 export const getRandomDate = (): string => {
-  const start = new Date(1970, 0, 1); // Start date (January 1, 1970)
+  const start = new Date(2010, 0, 1); // Start date
   const end = new Date(); // Current date
 
   const randomTimestamp =

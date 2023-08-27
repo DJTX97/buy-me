@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between px-5 py-3 bg-slate-500">
+    <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 bg-slate-500 shadow-lg">
       <Link href={"/"}>
         <div>
           <img className="h-16" src="/assets/favicon/brand.png" alt="" />

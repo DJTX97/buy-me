@@ -7,7 +7,7 @@ export default function Header() {
     <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 bg-slate-500 shadow-lg">
       <Link href={"/"}>
         <div>
-          <img className="h-16" src="/assets/favicon/brand.png" alt="" />
+          <img className="h-12 sm:h-14 md:h-16" src="/assets/favicon/brand.png" alt="" />
         </div>
       </Link>
       <SearchBar />

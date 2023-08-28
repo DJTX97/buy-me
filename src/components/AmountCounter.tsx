@@ -1,9 +1,13 @@
 "use client";
-import { useContext } from "react";
-import { AmountContext } from "@/providers/AmountTracker";
+//import { useContext } from "react";
+// import { AmountContext } from "@/providers/AmountTracker";
+import { useAtom } from "jotai";
+import { counter } from "@/providers/AmountTracker";
 
 export default function AmountCounter() {
-  const { amount, setAmount } = useContext(AmountContext);
+  // const { amount, setAmount } = useContext(AmountContext);
+
+  const [amount, setAmount] = useAtom(counter);
 
   const incrementAmount = () => {
     setAmount(amount + 1);

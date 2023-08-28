@@ -1,6 +1,6 @@
 import ProductRating from "@/components/ProductRating";
 import AddToCartBtn from "@/components/AddToCartBtn";
-import { AmountTracker } from "@/providers/AmountTracker";
+// import { AmountTracker } from "@/providers/AmountTracker";
 import AmountCounter from "@/components/AmountCounter";
 import ReviewSection from "@/components/ReviewSection";
 
@@ -48,10 +48,10 @@ export default function ProductPage({ params, product }: ProductPageProps) {
             <div className="font-extrabold">Price:</div>{" "}
             <div className="font-bold text-red-500">${product.price}</div>
           </div>
-          <AmountTracker>
+          {/* <AmountTracker> */}
             <AmountCounter />
             <AddToCartBtn product={product} />
-          </AmountTracker>
+          {/* </AmountTracker> */}
         </div>
       </div>
       <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>

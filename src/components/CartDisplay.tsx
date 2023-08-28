@@ -1,6 +1,6 @@
 "use client";
-import { SetStateAction, useContext, useEffect, useState } from "react";
-//import { CartContext } from "../providers/CartContext";
+import { SetStateAction, useEffect, useState } from "react";
+
 import { useAtom } from "jotai";
 import { cart } from "../providers/CartContext";
 
@@ -26,12 +26,13 @@ export default function CartDisplay({
   showCart,
   setShowCart,
 }: CartDisplayProps) {
-  //const { cartItems, removeFromCart } = useContext(CartContext);
+
 
   const [cartItems, setCartItems] = useAtom(cart);
 
   const [cartTotal, setCartTotal] = useState(0);
 
+  //product removal logic method
   const removeFromCart = (itemIndex: number) => {
     const updatedCartItems = cartItems.filter(
       (item, index) => index !== itemIndex
@@ -39,6 +40,7 @@ export default function CartDisplay({
     setCartItems(updatedCartItems);
   };
 
+  //product remove handler
   const handleDelete = (index: number) => {
     removeFromCart(index);
   };

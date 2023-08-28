@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ProductRating from "./ProductRating";
-import AddToCartBtn from "./AddToCartBtn";
+import ProductRating from "../ProductRating";
+import AddToCartBtn from "../Cart/AddToCartBtn";
 
 interface ProductCardProps {
   product: {

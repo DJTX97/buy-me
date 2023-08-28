@@ -1,6 +1,6 @@
 import ProductRating from "@/components/ProductRating";
-import AddToCartBtn from "@/components/AddToCartBtn";
-import AmountCounter from "@/components/AmountCounter";
+import AddToCartBtn from "@/components/Cart/AddToCartBtn";
+import AmountCounter from "@/components/Cart/AmountCounter";
 import ReviewSection from "@/components/ReviewSection";
 
 interface Product {

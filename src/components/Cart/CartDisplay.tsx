@@ -2,7 +2,7 @@
 import { SetStateAction, useEffect, useState } from "react";
 
 import { useAtom } from "jotai";
-import { cart } from "../providers/CartContext";
+import { cart } from "../../providers/CartContext";
 
 interface CartDisplayProps {
   showCart: boolean;

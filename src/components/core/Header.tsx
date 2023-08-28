@@ -1,4 +1,4 @@
-import CartButton from "./CartButton";
+import CartButton from "../Cart/CartButton";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 

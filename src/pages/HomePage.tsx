@@ -1,5 +1,5 @@
-import Hero from "@/components/Hero";
-import ProductCard from "@/components/ProductCard";
+import Hero from "@/components/core/Hero";
+import ProductCard from "@/components/core/ProductCard";
 import ProductFilterBar from "@/components/ProductFilterBar";
 
 interface HomePageProps {

@@ -1,19 +1,43 @@
 "use client";
 import { SetStateAction, useContext, useEffect, useState } from "react";
-import { CartContext } from "../providers/CartContext";
+//import { CartContext } from "../providers/CartContext";
+import { useAtom } from "jotai";
+import { cart } from "../providers/CartContext";
 
 interface CartDisplayProps {
   showCart: boolean;
   setShowCart: React.Dispatch<SetStateAction<boolean>>;
 }
 
+interface CartItem {
+  product: {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    category: string;
+    thumbnail: string;
+    rating: number;
+  };
+  amount: number;
+}
+
 export default function CartDisplay({
   showCart,
   setShowCart,
 }: CartDisplayProps) {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  //const { cartItems, removeFromCart } = useContext(CartContext);
+
+  const [cartItems, setCartItems] = useAtom(cart);
 
   const [cartTotal, setCartTotal] = useState(0);
+
+  const removeFromCart = (itemIndex: number) => {
+    const updatedCartItems = cartItems.filter(
+      (item, index) => index !== itemIndex
+    );
+    setCartItems(updatedCartItems);
+  };
 
   const handleDelete = (index: number) => {
     removeFromCart(index);
@@ -25,7 +49,7 @@ export default function CartDisplay({
     }
     // Calculate the total price
     let totalPrice = 0;
-    cartItems.forEach((item) => {
+    cartItems.forEach((item: CartItem) => {
       totalPrice += item.product.price * item.amount;
     });
     setCartTotal(totalPrice);
@@ -35,7 +59,7 @@ export default function CartDisplay({
     <>
       {cartItems.length > 0 && showCart && (
         <div className="absolute z-10 top-14 right-10 sm:right-28 md:right-40 flex flex-col gap-3 p-3 rounded-lg border border-slate-300 bg-white shadow-lg">
-          {cartItems.map((item, index) => {
+          {cartItems.map((item: CartItem, index) => {
             return (
               <div
                 className="flex gap-3 justify-between font-semibold"

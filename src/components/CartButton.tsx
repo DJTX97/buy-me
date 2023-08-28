@@ -1,10 +1,13 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import { CartContext } from "../providers/CartContext";
+//import { CartContext } from "../providers/CartContext";
 import CartDisplay from "./CartDisplay";
-
+import { useAtom } from "jotai";
+import { cart } from "../providers/CartContext";
 export default function CartButton() {
-  const { cartItems } = useContext(CartContext);
+  //const { cartItems } = useContext(CartContext);
+
+  const [cartItems, setCartItems] = useAtom(cart);
 
   const [showCart, setShowCart] = useState(false);
 

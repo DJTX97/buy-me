@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CartProvider } from "@/providers/CartContext";
+//import { CartProvider } from "@/providers/CartContext";
 
 export const metadata: Metadata = {
   title: "BuyMe",
@@ -19,13 +19,13 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <CartProvider>
+      {/* <CartProvider> */}
         <body>
           <Header />
           <div className="p-10 2xl:p-40 bg-slate-400">{children}</div>
           <Footer />
         </body>
-      </CartProvider>
+      {/* </CartProvider> */}
     </html>
   );
 }

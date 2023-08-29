@@ -1,7 +1,7 @@
 "use client";
 import { useAtom } from "jotai";
 import FilterOption from "./FilterOption";
-import { filters} from "@/providers/FilterTracker";
+import { filters } from "@/providers/FilterTracker";
 
 export default function FilterSelect() {
 

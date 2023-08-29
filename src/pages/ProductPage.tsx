@@ -1,7 +1,7 @@
-import ProductRating from "@/components/ProductRating";
+import ProductRating from "@/components/Review/StarRating";
 import AddToCartBtn from "@/components/Cart/AddToCartBtn";
 import AmountCounter from "@/components/Cart/AmountCounter";
-import ReviewSection from "@/components/ReviewSection";
+import ReviewSection from "@/components/Review/ReviewSection";
 
 interface Product {
   id: number;

@@ -5,7 +5,7 @@ interface StarRatingProps {
   rating: number;
 }
 
-const ProductRating = ({ rating }: StarRatingProps) => {
+export default function StarRating({ rating }: StarRatingProps) {
   //Store the rating in an internal state to avoid changing values in the case of randomized data
   const [stars, setStars] = useState(rating);
 
@@ -53,4 +53,3 @@ const ProductRating = ({ rating }: StarRatingProps) => {
   );
 };
 
-export default ProductRating;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProductRating from "../ProductRating";
+import ProductRating from "../Review/StarRating";
 import AddToCartBtn from "../Cart/AddToCartBtn";
 
 interface ProductCardProps {

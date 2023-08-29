@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchData } from "@/utils/dataFetchingKit";
 import { getRandomUserRating } from "@/utils/dataFakerKit";
-import ProductRating from "./ProductRating";
+import ProductRating from "./StarRating";
 import ReviewDate from "./ReviewDate";
 
 interface ReviewSectionProps {

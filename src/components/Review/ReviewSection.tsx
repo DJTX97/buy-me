@@ -47,7 +47,7 @@ export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
     };
 
     fetchReviews();
-    console.log(ratingCount);
+    //console.log(ratingCount);
   }, [ratingCount]);
 
   //check for reviews

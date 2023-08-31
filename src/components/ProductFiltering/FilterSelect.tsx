@@ -4,8 +4,7 @@ import FilterOption from "./FilterOption";
 import { filters } from "@/providers/FilterTracker";
 
 export default function FilterSelect() {
-
-    const [options] = useAtom(filters);
+  const [options] = useAtom(filters);
 
   return (
     <div className="">

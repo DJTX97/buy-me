@@ -3,19 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { fetchData } from "@/utils/dataFetchingKit";
-
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { Product } from "@/utils/globalTypes";
 
 export default function SearchBar() {
   const router = useRouter();

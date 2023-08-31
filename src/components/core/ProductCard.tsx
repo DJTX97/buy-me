@@ -1,17 +1,10 @@
 import Link from "next/link";
 import ProductRating from "../Review/StarRating";
 import AddToCartBtn from "../Cart/AddToCartBtn";
+import { Product } from "@/utils/globalTypes";
 
 interface ProductCardProps {
-  product: {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: string;
-    thumbnail: string;
-    rating: number;
-  };
+  product: Product
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

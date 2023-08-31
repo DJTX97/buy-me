@@ -1,23 +1,18 @@
 import Hero from "@/components/core/Hero";
 import ProductGrid from "@/components/core/ProductGrid";
 import ProductFilterBar from "@/components/ProductFiltering/ProductFilterBar";
+import { Product } from "@/utils/globalTypes";
 
 interface HomePageProps {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  thumbnail: string;
-  rating: number;
+  data: Product[];
 }
 
-export default function HomePage({ data }: { data: HomePageProps[] }) {
+export default function HomePage({ data }: HomePageProps) {
   return (
     <div className="flex flex-col items-center">
       <Hero />
       <ProductFilterBar />
-      <ProductGrid data={data} />
+      <ProductGrid products={data} />
     </div>
   );
 }

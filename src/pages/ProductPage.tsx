@@ -2,24 +2,18 @@ import ProductRating from "@/components/Review/StarRating";
 import AddToCartBtn from "@/components/Cart/AddToCartBtn";
 import AmountCounter from "@/components/Cart/AmountCounter";
 import ReviewSection from "@/components/Review/ReviewSection";
+import { Product } from "@/utils/globalTypes";
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  thumbnail: string;
-  rating: number;
+interface ReviewedProduct extends Product {
   reviewCount: number;
 }
 
 interface ProductPageProps {
   params: {
     category: string;
-    product: Array<string>;
+    productID: Array<string>;
   };
-  product: Product;
+  product: ReviewedProduct;
 }
 
 export default function ProductPage({ params, product }: ProductPageProps) {

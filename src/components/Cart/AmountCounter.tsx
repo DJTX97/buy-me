@@ -1,11 +1,8 @@
 "use client";
-//import { useContext } from "react";
-// import { AmountContext } from "@/providers/AmountTracker";
 import { useAtom } from "jotai";
 import { counter } from "@/providers/AmountTracker";
 
 export default function AmountCounter() {
-  // const { amount, setAmount } = useContext(AmountContext);
 
   const [amount, setAmount] = useAtom(counter);
 
@@ -21,7 +18,6 @@ export default function AmountCounter() {
     const re = /^[0-9\b]+$/;
 
     // if value is not blank, then test the regex
-
     if (event.target.value === 0 || re.test(event.target.value)) {
       setAmount(parseInt(event.target.value));
     }

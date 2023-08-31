@@ -3,24 +3,19 @@ import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { productFilter, selectedFilter } from "@/providers/FilterTracker";
 import ProductCard from "@/components/core/ProductCard";
+import { Product } from "@/utils/globalTypes";
 
 interface ProductGridProps {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  thumbnail: string;
-  rating: number;
+  products: Product[];
 }
 
-export default function ProductGrid({ data }: { data: ProductGridProps[] }) {
+export default function ProductGrid({ products }: ProductGridProps) {
 
   const [criteria] = useAtom(selectedFilter);
-  const [results, setResults] = useState<ProductGridProps[]>(data);
+  const [results, setResults] = useState(products);
 
   useEffect(() => {
-    setResults(productFilter(data, criteria));
+    setResults(productFilter(products, criteria));
 
   }, [criteria])
 

@@ -1,25 +1,17 @@
 "use client";
 import { SetStateAction, useEffect, useState } from "react";
-
 import { useAtom } from "jotai";
-import { cart } from "../../providers/CartContext";
+import { cart } from "@/providers/CartContext";
+import { Product } from "@/utils/globalTypes";
+
+interface CartItem {
+  product: Product;
+  amount: number;
+}
 
 interface CartDisplayProps {
   showCart: boolean;
   setShowCart: React.Dispatch<SetStateAction<boolean>>;
-}
-
-interface CartItem {
-  product: {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: string;
-    thumbnail: string;
-    rating: number;
-  };
-  amount: number;
 }
 
 export default function CartDisplay({

@@ -3,30 +3,15 @@ import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { cart } from "@/providers/CartContext";
 import { counter } from "@/providers/AmountTracker";
+import { Product } from "@/utils/globalTypes";
 
 interface CartItem {
-  product: {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: string;
-    thumbnail: string;
-    rating: number;
-  };
+  product: Product;
   amount: number;
 }
 
 interface AddToCartBtnProps {
-  product: {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: string;
-    thumbnail: string;
-    rating: number;
-  };
+  product: Product;
   condensed?: boolean;
 }
 

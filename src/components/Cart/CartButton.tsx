@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
-
 import CartDisplay from "./CartDisplay";
 import { useAtom } from "jotai";
-import { cart } from "../../providers/CartContext";
+import { cart } from "@/providers/CartContext";
 export default function CartButton() {
 
 

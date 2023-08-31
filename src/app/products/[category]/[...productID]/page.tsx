@@ -5,12 +5,12 @@ import { redirect } from "next/navigation";
 
 interface Params {
   category: string;
-  product: string[];
+  productID: string[];
 }
 
 export default async function Product({ params }: { params: Params }) {
   const product = await fetchData(
-    `https://dummyjson.com/products/${params.product[0]}`,
+    `https://dummyjson.com/products/${params.productID[0]}`,
     { reviewCount: getRandomReviewCount(10) }
   );
 
@@ -20,7 +20,7 @@ export default async function Product({ params }: { params: Params }) {
   // console.log(params);
   // console.log(product);
 
-  if (params.product.length > 1 || !categories.includes(params.category)) {
+  if (params.productID.length > 1 || !categories.includes(params.category)) {
     redirect(`/products/${product.category}/${product.id}`);
   }
 

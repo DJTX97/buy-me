@@ -1,14 +1,5 @@
 import { atom } from "jotai";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  thumbnail: string;
-  rating: number;
-}
+import { Product } from "@/utils/globalTypes";
 
 const OPTIONS = [
   "All",

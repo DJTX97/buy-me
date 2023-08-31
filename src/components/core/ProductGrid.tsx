@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { productFilter, selectedFilter } from "@/providers/FilterTracker";
+import { counter } from "@/providers/AmountTracker";
 import ProductCard from "@/components/core/ProductCard";
 import { Product } from "@/utils/globalTypes";
 
@@ -11,8 +12,14 @@ interface ProductGridProps {
 
 export default function ProductGrid({ products }: ProductGridProps) {
 
+  const [amount, setAmount] = useAtom(counter);
+
   const [criteria] = useAtom(selectedFilter);
   const [results, setResults] = useState(products);
+
+  useEffect(() => {
+    setAmount(1);
+  }, [])
 
   useEffect(() => {
     setResults(productFilter(products, criteria));

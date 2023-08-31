@@ -1,25 +1,29 @@
 "use client";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { counter } from "@/providers/AmountTracker";
 
 export default function AmountCounter() {
-
   const [amount, setAmount] = useAtom(counter);
 
+  useEffect(() => {
+    setAmount(1);
+  }, []);
+
   const incrementAmount = () => {
-    setAmount(amount + 1);
+    setAmount(prev => prev + 1);
   };
 
   const decrementAmount = () => {
-    amount > 0 && setAmount(amount - 1);
+    amount > 1 && setAmount(prev => prev - 1);
   };
 
-  const updateAmount = (event: any) => {
+  const updateAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     const re = /^[0-9\b]+$/;
 
     // if value is not blank, then test the regex
-    if (event.target.value === 0 || re.test(event.target.value)) {
-      setAmount(parseInt(event.target.value));
+    if (parseInt(event.target.value, 10) === 0 || re.test(event.target.value)) {
+      setAmount(parseInt(event.target.value, 10));
     }
   };
 

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { cart } from "@/providers/CartContext";
 import { counter } from "@/providers/AmountTracker";
@@ -19,28 +18,18 @@ export default function AddToCartBtn({
   product,
   condensed,
 }: AddToCartBtnProps) {
+  const [cartItems, setCartItems] = useAtom<CartItem[]>(cart) as [
+    CartItem[],
+    (items: CartItem[]) => void
+  ];
 
-  const [cartItems, setCartItems] = useAtom<CartItem[]>(cart) as [CartItem[], (items: CartItem[]) => void];
+  const [amount] = useAtom(counter);
 
-  const [amount, setAmount] = useAtom(counter);
-
-  useEffect(() => {
-    if (condensed && amount === 0) {
-      setAmount(1);
-    }
-  }, []);
   const addToCart = (item: CartItem) => {
     setCartItems([...cartItems, item]);
   };
   const handleAddToCart = () => {
     if (amount > 0) {
-      const cartItem = {
-        product,
-        amount,
-      };
-      addToCart(cartItem);
-    }
-    if (condensed && amount === 0) {
       const cartItem = {
         product,
         amount,

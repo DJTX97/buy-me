@@ -42,7 +42,7 @@ export default function ProductPage({ params, product }: ProductPageProps) {
             <div className="font-bold text-red-500">${product.price}</div>
           </div>
           <AmountCounter />
-          <AddToCartBtn product={product} />
+          <AddToCartBtn product={product} condensed={false} />
         </div>
       </div>
       <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>

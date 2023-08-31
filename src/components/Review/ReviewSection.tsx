@@ -72,8 +72,8 @@ export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
         <div className="flex flex-col gap-8 p-5 font-normal">
           {reviews.length !== 0 ? (
             reviews.slice(0, batch).map((post, index) => (
-              <div className="flex p-3 border-b border-slate-300" key={index}>
-                <div className="flex flex-col justify-center gap-2 w-1/6">
+              <div className="flex flex-col md:flex-row p-3 border-b border-slate-300" key={index}>
+                <div className="flex flex-col justify-center gap-2 md:w-1/6">
                   <div>
                     <img
                       src="/assets/user/user-default.png"
@@ -84,12 +84,12 @@ export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
                   <div className="text-base font-bold">
                     {post.email.split("@")[0]}
                   </div>
-                  <div className="text-xs font-bold">
+                  <div className="text-xs font-bold opacity-50">
                     <ReviewDate />
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 w-5/6 pb-5">
-                  <div className="text-xl font-semibold">{post.name}</div>
+                <div className="flex flex-col gap-1 md:w-5/6 pb-5">
+                  <div className="text-2xl font-semibold">{post.name}</div>
                   <div className="flex gap-2 text-base font-bold">
                     Review: <ProductRating rating={getRandomUserRating()} />
                   </div>

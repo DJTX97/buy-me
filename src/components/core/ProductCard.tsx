@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.thumbnail}
           className="h-full w-full rounded-lg"
-          alt="image"
+          alt=""
         />
       </Link>
         <div className="relative flex flex-col h-1/2 w-full p-2 rounded-b-lg">

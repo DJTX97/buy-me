@@ -5,7 +5,7 @@ import { heroPaths } from "@/utils/externalAssetsHub";
 
 export default function Hero() {
   return (
-    <div>
+    <div className="w-full">
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -19,7 +19,7 @@ export default function Hero() {
             <img
               className="h-full rounded-lg"
               src={image}
-              alt={`Carousel Image ${index}`}
+              alt=""
             />
           </div>
         ))}

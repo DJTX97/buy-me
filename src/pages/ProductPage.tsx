@@ -19,7 +19,7 @@ interface ProductPageProps {
 export default function ProductPage({ params, product }: ProductPageProps) {
   return (
     <div className="flex flex-col border border-black bg-white rounded-xl text-2xl font-semibold">
-      <div className="p-8 text-3xl md:text-6xl">{product.title}R</div>
+      <div className="p-8 text-3xl md:text-6xl">{product.title}</div>
       <div className="flex flex-col lg:flex-row">
         <img
           className="h-80 sm:h-96 md:h-[28rem] lg:w-1/2 m-10 lg:m-5 sm:p-10"

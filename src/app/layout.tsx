@@ -22,7 +22,7 @@ export default async function RootLayout({
 
         <body>
           <Header />
-          <div className="p-10 2xl:p-40 bg-slate-400">{children}</div>
+          <div className="p-10 2xl:px-40 2xl:py-20 bg-slate-400">{children}</div>
           <Footer />
         </body>
 

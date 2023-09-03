@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import { counter } from "@/providers/AmountTracker";
 
@@ -8,13 +8,31 @@ export default function AmountCounter() {
 
   const [amount, setAmount] = useAtom(counter);
 
-  //Reset amount to 1
+  //Reset amount to 1 on page refresh
   useEffect(() => {
     setAmount(1);
   }, []);
 
+  //Reset amount to 1 when clicking outside the input
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setAmount(1);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   //Set event.target.value to empty string to let user input the amount
-  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+  const handleInputClick = (event: React.MouseEvent<HTMLInputElement>) => {
     const inputElement = event.target as HTMLInputElement;
     inputElement.value = "";
   };
@@ -37,7 +55,7 @@ export default function AmountCounter() {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row">
+    <div className="flex flex-col sm:flex-row md:w-1/4 lg:w-1/2" ref={inputRef}>
       <div className="font-extrabold">Amount:</div>
       {/* Large screen input */}
       <div className="hidden sm:flex ml-2 text-base">
@@ -50,14 +68,8 @@ export default function AmountCounter() {
         <input
           type="text"
           value={Number.isNaN(amount) ? "" : amount}
-          ref={inputRef}
           onChange={updateAmount}
-          onClick={handleClick}
-          style={{
-            appearance: "textfield",
-            MozAppearance: "textfield",
-            WebkitAppearance: "textfield",
-          }}
+          onClick={handleInputClick}
           className="h-full w-20 px-2 border border-black outline-none"
         />
         <button
@@ -72,14 +84,8 @@ export default function AmountCounter() {
         <input
           type="text"
           value={Number.isNaN(amount) ? "" : amount}
-          ref={inputRef}
           onChange={updateAmount}
-          onClick={handleClick}
-          style={{
-            appearance: "textfield",
-            MozAppearance: "textfield",
-            WebkitAppearance: "textfield",
-          }}
+          onClick={handleInputClick}
           className="h-full w-full px-3 py-1 border border-black rounded-full outline-none"
         />
         <div className="flex justify-center gap-10 w-full">

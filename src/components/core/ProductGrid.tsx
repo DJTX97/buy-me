@@ -5,12 +5,13 @@ import { productFilter, selectedFilter } from "@/providers/FilterTracker";
 import { counter } from "@/providers/AmountTracker";
 import ProductCard from "@/components/core/ProductCard";
 import { Product } from "@/utils/globalTypes";
+import Spinner from "./Spinner";
 
 interface ProductGridProps {
   products: Product[];
 }
 
-const initialItemsToShow = 8;
+//const initialItemsToShow = 8;
 const batchSize = 8;
 const threshold = 100; // Adjust this value as per your requirements
 
@@ -19,7 +20,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   const [criteria] = useAtom(selectedFilter);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [results, setResults] = useState(
-    filteredProducts.slice(0, initialItemsToShow)
+    filteredProducts.slice(0, batchSize)
   );
   const [currentBatch, setCurrentBatch] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +35,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }, [products, criteria]);
 
   useEffect(() => {
-    setResults(filteredProducts.slice(0, initialItemsToShow));
+    setResults(filteredProducts.slice(0, batchSize));
     setCurrentBatch(1);
   }, [filteredProducts]);
 
@@ -51,12 +52,12 @@ export default function ProductGrid({ products }: ProductGridProps) {
         const endIndex = startIndex + batchSize;
         const nextBatch = filteredProducts.slice(startIndex, endIndex);
 
-        // Simulate loading delay (replace with your actual data fetching logic)
-        setTimeout(() => {
+        // Simulate loading delay
+        // setTimeout(() => {
           setResults((prevResults) => [...prevResults, ...nextBatch]);
           setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
           setIsLoading(false);
-        }, 1000);
+        // }, 500);
       }
     };
 
@@ -72,7 +73,11 @@ export default function ProductGrid({ products }: ProductGridProps) {
       {results.map((product, index) => (
         <ProductCard key={index} product={product} />
       ))}
-      {isLoading && <div>Loading...</div>} {/* Show a loading indicator */}
+      {isLoading && (
+        <div className="col-span-full w- text-center py-3 border rounded-lg border-black bg-white">
+          <Spinner size={28} thickness="1rem" />
+        </div>
+      )}
     </div>
   );
 }

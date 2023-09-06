@@ -10,7 +10,7 @@ interface ReviewSectionProps {
 }
 
 interface Post {
-  id: string;
+  id: number;
   name: string;
   email: string;
   body: string;

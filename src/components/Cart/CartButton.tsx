@@ -1,14 +1,16 @@
 "use client";
 import { useState } from "react";
+import { AnimatePresence } from 'framer-motion';
 import CartDisplay from "./CartDisplay";
 import { useAtom } from "jotai";
 import { cart } from "@/providers/CartContext";
 export default function CartButton() {
-
-
   const [cartItems, setCartItems] = useAtom(cart);
-
   const [showCart, setShowCart] = useState(false);
+
+  const handleShowCart = () => {
+    setShowCart((prev) => !prev);
+  };
 
   //Check cart content
   // useEffect(() => {
@@ -16,9 +18,9 @@ export default function CartButton() {
   // }, [cartItems]);
 
   return (
-    <>
+    <div>
       <button
-        onClick={() => setShowCart((prev) => !prev)}
+        onClick={handleShowCart}
         className="relative flex items-center gap-2 text-white"
       >
         <svg
@@ -44,9 +46,11 @@ export default function CartButton() {
           </div>
         )}
       </button>
+      <AnimatePresence>
       {showCart && (
-        <CartDisplay showCart={showCart} setShowCart={setShowCart} />
+        <CartDisplay key="cart" showCart={showCart} setShowCart={setShowCart} />
       )}
-    </>
+      </AnimatePresence>
+    </div>
   );
 }

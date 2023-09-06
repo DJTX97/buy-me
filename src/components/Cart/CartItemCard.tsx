@@ -1,4 +1,5 @@
 import { Product } from "@/utils/globalTypes";
+import { motion as m } from "framer-motion";
 
 interface CartItem {
   product: Product;
@@ -18,9 +19,13 @@ export default function CartItemCard({
   cartItems,
   removeItemFromCart,
 }: CartItemCardProps) {
-    
   return (
-    <div>
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
       <div className="flex gap-3 justify-between font-semibold">
         <img
           src={item.product.thumbnail}
@@ -51,6 +56,6 @@ export default function CartItemCard({
       {index !== cartItems.length - 1 && (
         <div className="h-[2px] mt-2 rounded-2xl bg-slate-200" />
       )}
-    </div>
+    </m.div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 import { SetStateAction, useEffect, useState } from "react";
 import { useAtom } from "jotai";
+import { AnimatePresence, motion as m } from "framer-motion";
 import { cart } from "@/providers/CartContext";
 import { Product } from "@/utils/globalTypes";
 import EmptyCartBtn from "./EmptyCartBtn";
@@ -51,7 +52,12 @@ export default function CartDisplay({
   }, [cartItems]);
 
   return (
-    <>
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
       {cartItems.length > 0 && showCart && (
         <div className="absolute z-10 top-16 left-10 sm:left-auto sm:right-12 md:right-40 flex flex-col gap-3 p-3 rounded-lg border border-slate-300 bg-white shadow-lg">
           <div className="flex justify-between py-2 border-b-2 border-slate-200">
@@ -63,23 +69,25 @@ export default function CartDisplay({
             </div>
           </div>
           <div className={`flex flex-col gap-3 max-h-60 overflow-y-auto`}>
-            {cartItems.map((item: CartItem, index) => {
-              return (
-                <CartItemCard
-                  key={index}
-                  item={item}
-                  cartItems={cartItems}
-                  removeItemFromCart={removeItemFromCart}
-                  index={index}
-                />
-              );
-            })}
+            <AnimatePresence>
+              {cartItems.map((item: CartItem, index) => {
+                return (
+                  <CartItemCard
+                    key={index}
+                    item={item}
+                    cartItems={cartItems}
+                    removeItemFromCart={removeItemFromCart}
+                    index={index}
+                  />
+                );
+              })}
+            </AnimatePresence>
           </div>
           <div className="border-2 border-slate-200 rounded-lg text-center text-2xl font-bold text-red-500">
             TOTAL: ${cartTotal}
           </div>
         </div>
       )}
-    </>
+    </m.div>
   );
 }

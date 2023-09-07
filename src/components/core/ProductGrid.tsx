@@ -76,7 +76,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
       ))}
       </AnimatePresence>
       {isLoading && (
-        <div className="col-span-full w- text-center py-3 border rounded-lg border-black bg-white">
+        <div className="col-span-full text-center py-3 border rounded-lg border-black bg-white">
           <Spinner size={28} thickness="1rem" />
         </div>
       )}

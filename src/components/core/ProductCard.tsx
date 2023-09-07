@@ -14,10 +14,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <m.div
       initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeInOut" } }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="flex flex-col items-center p-2 border border-black h-96 2xl:h-[30rem] rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white hover:scale-105 transition-all duration-110"
+      animate={{
+        opacity: 1,
+        scale: 1,
+        transition: { duration: 0.5, ease: "easeInOut" },
+      }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.11 } }}
+      className="flex flex-col items-center p-2 border border-black h-96 2xl:h-[30rem] rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white transition-colors duration-110"
     >
       <Link className="h-1/2 w-full" href={productPageUrl}>
         <img

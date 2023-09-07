@@ -1,23 +1,13 @@
-"use client";
-import { useState, useEffect } from "react";
 interface SpinnerProps {
-  size: number;
+  size: string;
   thickness: string;
 }
 
-export default function Spinner({ size, thickness }: SpinnerProps) {
-  const [dimension, setDimension] = useState({
-    size,
-    thickness,
-  });
-  
-  useEffect(() => {
-    setDimension(dimension)
-  }, []);
+export default function Spinner() {
 
   return (
     <div
-      className={`inline-block h-${dimension.size} w-${dimension.size} animate-spin rounded-full border-[${dimension.thickness}] border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`}
+      className={`inline-block animate-spin h-40 w-40 border-[1rem] rounded-full border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] `}
       role="status"
     >
       <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">

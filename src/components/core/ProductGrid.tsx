@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
-import { AnimatePresence, motion as m } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { productFilter, selectedFilter } from "@/providers/FilterTracker";
 import { counter } from "@/providers/AmountTracker";
 import ProductCard from "@/components/core/ProductCard";
@@ -44,20 +44,22 @@ export default function ProductGrid({ products }: ProductGridProps) {
         window.innerHeight + document.documentElement.scrollTop;
       const documentHeight = document.documentElement.offsetHeight;
       const isReachedThreshold = scrollPosition >= documentHeight - threshold;
+      const hasMoreBatches = currentBatch * batchSize < filteredProducts.length;
 
-      if (isReachedThreshold && !isLoading) {
+      if (isReachedThreshold && !isLoading && hasMoreBatches) {
         setIsLoading(true);
         const startIndex = currentBatch * batchSize;
         const endIndex = startIndex + batchSize;
         const nextBatch = filteredProducts.slice(startIndex, endIndex);
 
         // Simulate loading delay
-        // setTimeout(() => {
-        setResults((prevResults) => [...prevResults, ...nextBatch]);
-        setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
+        //setTimeout(() => {
+          setResults((prevResults) => [...prevResults, ...nextBatch]);
+          setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
+          setIsLoading(false);
+        //}, 500);
+      } else if (!hasMoreBatches) {
         setIsLoading(false);
-
-        // }, 500);
       }
     };
 
@@ -71,13 +73,13 @@ export default function ProductGrid({ products }: ProductGridProps) {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-10">
       <AnimatePresence>
-      {results.map((product, index) => (
-        <ProductCard key={index} product={product} />
-      ))}
+        {results.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
       </AnimatePresence>
       {isLoading && (
-        <div className="col-span-full text-center py-3 border rounded-lg border-black bg-white">
-          <Spinner size={28} thickness="1rem" />
+        <div className="col-span-full text-center p-8 border rounded-lg border-black bg-white">
+          <Spinner />
         </div>
       )}
     </div>

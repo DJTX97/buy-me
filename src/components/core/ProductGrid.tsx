@@ -69,7 +69,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }, [filteredProducts, currentBatch, isLoading]);
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-0">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-10">
       <AnimatePresence>
       {results.map((product, index) => (
         <ProductCard key={index} product={product} />

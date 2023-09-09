@@ -25,16 +25,23 @@ export default function AddToCartBtn({
 
   const [amount] = useAtom(counter);
 
-  const addToCart = (item: CartItem) => {
-    setCartItems([...cartItems, item]);
-  };
   const handleAddToCart = () => {
     if (amount > 0) {
-      const cartItem = {
-        product,
-        amount,
-      };
-      addToCart(cartItem);
+      //Check if product is already in cart and update amount else add product
+      const existingCartItem = cartItems.find(
+        (item: CartItem) => item.product.id === product.id
+      );
+      if (existingCartItem) {
+        existingCartItem.amount += amount;
+        setCartItems([...cartItems]);
+      } else {
+        const cartItem = {
+          product,
+          amount,
+        };
+
+        setCartItems([...cartItems, cartItem]);
+      }
     }
   };
   return (

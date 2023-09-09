@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from "framer-motion";
 import CartDisplay from "./CartDisplay";
 import { useAtom } from "jotai";
 import { cart } from "@/providers/CartContext";
@@ -47,9 +47,13 @@ export default function CartButton() {
         )}
       </button>
       <AnimatePresence>
-      {showCart && (
-        <CartDisplay key="cart" showCart={showCart} setShowCart={setShowCart} />
-      )}
+        {showCart && (
+          <CartDisplay
+            key="cart"
+            showCart={showCart}
+            setShowCart={setShowCart}
+          />
+        )}
       </AnimatePresence>
     </div>
   );

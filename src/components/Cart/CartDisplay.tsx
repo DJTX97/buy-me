@@ -38,6 +38,12 @@ export default function CartDisplay({
     setCartItems([]);
   };
 
+  const handleCheckout = () => {
+    
+    console.log(cartItems);
+    emptyCart();
+  }
+
   useEffect(() => {
     // Hide cart if it is empty
     if (cartItems.length === 0) {
@@ -85,6 +91,9 @@ export default function CartDisplay({
           </div>
           <div className="border-2 border-slate-200 rounded-lg text-center text-2xl font-bold text-red-500">
             TOTAL: ${cartTotal}
+          </div>
+          <div className="flex justify-center">
+            <button onClick={handleCheckout} className="py-2 px-10 rounded-full bg-red-600 hover:bg-green-600 text-white text-2xl font-bold">Place order!</button>
           </div>
         </div>
       )}

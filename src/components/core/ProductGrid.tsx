@@ -14,7 +14,7 @@ interface ProductGridProps {
 
 const initialItemsToShow = 8;
 const batchSize = 4;
-const threshold = 100; // Adjust this value as per your requirements
+const threshold = 200; // Adjust this value as per your requirements
 
 export default function ProductGrid({ products }: ProductGridProps) {
   const [amount, setAmount] = useAtom(counter);

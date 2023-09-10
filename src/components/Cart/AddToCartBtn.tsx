@@ -49,9 +49,9 @@ export default function AddToCartBtn({
       {condensed ? (
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-0 right-2 flex justify-between w-1/4 lg:w-1/3 mt-2 p-3 rounded-lg bg-black text-white hover:bg-gray-700"
+          className="absolute bottom-2 right-2 2xl:bottom-4 2xl:right-6 flex justify-between 2xl:px-7 w-1/4 lg:w-1/3 mt-2 p-3 rounded-lg bg-black text-white hover:bg-gray-700"
         >
-          <div>Buy</div>
+          <div className="2xl:text-xl 2xl:font-bold">Buy</div>
           <svg
             className="h-6"
             aria-hidden="true"

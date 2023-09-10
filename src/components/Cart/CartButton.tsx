@@ -24,10 +24,10 @@ export default function CartButton() {
     <div>
       <button
         onClick={handleShowCart}
-        className="relative flex items-center gap-2 text-white"
+        className="relative flex items-center gap-2  text-white"
       >
         <svg
-          className="h-6"
+          className="h-6 2xl:h-12"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -42,9 +42,9 @@ export default function CartButton() {
           />
         </svg>
 
-        <div className="hidden md:block">Cart</div>
+        <div className="hidden md:block 2xl:text-4xl">Cart</div>
         {cartItems.length > 0 && (
-          <div className="absolute top-3 left-5 md:left-[3.7rem] flex justify-center items-center h-4 w-4 bg-pink-600 rounded-full text-xs">
+          <div className="absolute top-3 left-5 md:left-[3.7rem] 2xl:top-8 2xl:left-28 flex justify-center items-center h-4 2xl:h-8 w-4 2xl:w-8 bg-pink-600 rounded-full text-xs 2xl:text-2xl">
             {cartItems.length}
           </div>
         )}

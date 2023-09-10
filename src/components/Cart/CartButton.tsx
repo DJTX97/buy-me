@@ -1,11 +1,14 @@
 "use client";
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import CartDisplay from "./CartDisplay";
 import { useAtom } from "jotai";
+import { AnimatePresence } from "framer-motion";
 import { cart } from "@/providers/CartContext";
+import CartDisplay from "./CartDisplay";
+import { checkoutStatus } from "@/providers/CartContext";
+import CheckoutModal from "./CheckoutModal";
 export default function CartButton() {
   const [cartItems, setCartItems] = useAtom(cart);
+  const [checkedOut, setCheckedOut] = useAtom(checkoutStatus);
   const [showCart, setShowCart] = useState(false);
 
   const handleShowCart = () => {
@@ -54,6 +57,7 @@ export default function CartButton() {
             setShowCart={setShowCart}
           />
         )}
+      {checkedOut && <CheckoutModal />}
       </AnimatePresence>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import { SetStateAction, useEffect, useState } from "react";
 import { useAtom } from "jotai";
+import { checkoutStatus, checkoutProductList } from "@/providers/CartContext";
 import { AnimatePresence, motion as m } from "framer-motion";
 import { cart } from "@/providers/CartContext";
 import { Product } from "@/utils/globalTypes";
@@ -22,7 +23,8 @@ export default function CartDisplay({
   setShowCart,
 }: CartDisplayProps) {
   const [cartItems, setCartItems] = useAtom(cart);
-
+  const [checkedOut, setCheckedOut] = useAtom(checkoutStatus);
+  const [checkouttList, setCheckoutList] = useAtom(checkoutProductList);
   const [cartTotal, setCartTotal] = useState(0);
 
   //item removal logic
@@ -39,10 +41,11 @@ export default function CartDisplay({
   };
 
   const handleCheckout = () => {
-    
-    console.log(cartItems);
+    //console.log(cartItems);
+    setCheckoutList(cartItems);
     emptyCart();
-  }
+    setCheckedOut(true);
+  };
 
   useEffect(() => {
     // Hide cart if it is empty
@@ -93,7 +96,12 @@ export default function CartDisplay({
             TOTAL: ${cartTotal}
           </div>
           <div className="flex justify-center">
-            <button onClick={handleCheckout} className="py-2 px-10 rounded-full bg-red-600 hover:bg-green-600 text-white text-2xl font-bold">Place order!</button>
+            <button
+              onClick={handleCheckout}
+              className="py-2 px-10 rounded-full bg-red-600 hover:bg-green-600 text-white text-2xl font-bold"
+            >
+              Place order!
+            </button>
           </div>
         </div>
       )}

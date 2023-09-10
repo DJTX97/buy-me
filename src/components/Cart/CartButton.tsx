@@ -24,7 +24,7 @@ export default function CartButton() {
     <div>
       <button
         onClick={handleShowCart}
-        className="relative flex items-center gap-2  text-white"
+        className="relative flex items-center gap-2 2xl:gap-3 text-white"
       >
         <svg
           className="h-6 2xl:h-12"

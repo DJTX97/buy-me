@@ -72,28 +72,33 @@ export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
         <div className="flex flex-col gap-8 p-5 font-normal">
           {reviews.length !== 0 ? (
             reviews.slice(0, batch).map((post, index) => (
-              <div className="flex flex-col md:flex-row p-3 border-b border-slate-300" key={index}>
+              <div
+                className="flex flex-col md:flex-row p-3 border-b border-slate-300"
+                key={index}
+              >
                 <div className="flex flex-col justify-center gap-2 md:w-1/6">
-                  <div>
+                  <div className="">
                     <img
                       src="/assets/user/user-default.png"
-                      className="h-14 border-2 border-slate-300 rounded-full"
+                      className="h-14 2xl:h-24 border-2 border-slate-300 rounded-full"
                       alt="profile"
                     />
                   </div>
-                  <div className="text-base font-bold">
+                  <div className="text-base 2xl:text-3xl font-bold">
                     {post.email.split("@")[0]}
                   </div>
-                  <div className="text-xs font-bold opacity-50">
+                  <div className="text-xs 2xl:text-xl font-bold opacity-50">
                     <ReviewDate />
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 md:w-5/6 pb-5">
-                  <div className="text-2xl font-semibold">{post.name}</div>
-                  <div className="flex gap-2 text-base font-bold">
+                <div className="flex flex-col gap-1 2xl:gap-5 md:w-5/6 pb-5">
+                  <div className="text-2xl 2xl:text-4xl font-semibold">
+                    {post.name}
+                  </div>
+                  <div className="flex items-center gap-2 text-base 2xl:text-2xl font-bold">
                     Review: <ProductRating rating={getRandomUserRating()} />
                   </div>
-                  <div className="text-base">{post.body}</div>
+                  <div className="text-base 2xl:text-2xl">{post.body}</div>
                 </div>
               </div>
             ))
@@ -105,7 +110,7 @@ export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
           <div className="flex justify-center py-10 md:py-7 2xl:py-14">
             <button
               onClick={loadMore}
-              className="p-5 bg-black text-white rounded-full hover:bg-gray-700"
+              className="px-20 2xl:px-60 py-5 bg-black text-white rounded-full hover:bg-gray-700"
             >
               Load More
             </button>

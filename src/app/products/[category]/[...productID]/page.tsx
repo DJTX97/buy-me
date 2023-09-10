@@ -11,7 +11,7 @@ interface Params {
 export default async function Product({ params }: { params: Params }) {
   const product = await fetchData(
     `https://dummyjson.com/products/${params.productID[0]}`,
-    { reviewCount: getRandomReviewCount(10) }
+    { reviewCount: getRandomReviewCount(20) }
   );
 
   const categories = await fetchData(

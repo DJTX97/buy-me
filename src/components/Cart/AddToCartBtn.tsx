@@ -71,9 +71,9 @@ export default function AddToCartBtn({
       ) : (
         <button
           onClick={handleAddToCart}
-          className="md:mt-10 w-3/4 p-3 rounded-full bg-black text-white self-center hover:bg-gray-700"
+          className="md:mt-10 w-3/4 p-3 2xl:p-5 rounded-full bg-black text-white self-center hover:bg-gray-700"
         >
-          Add to cart
+          Add to Cart
         </button>
       )}
     </>

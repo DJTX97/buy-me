@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import { counter } from "@/providers/AmountTracker";
 
@@ -58,10 +58,10 @@ export default function AmountCounter() {
     <div className="flex flex-col sm:flex-row md:w-1/4 lg:w-1/2" ref={inputRef}>
       <div className="font-extrabold">Amount:</div>
       {/* Large screen input */}
-      <div className="hidden sm:flex ml-2 text-base">
+      <div className="hidden sm:flex ml-2 text-base 2xl:text-3xl">
         <button
           onClick={decrementAmount}
-          className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
+          className="h-full w-7 2xl:w-14 px-2 rounded-l-xl bg-gray-300 hover:bg-gray-200"
         >
           -
         </button>
@@ -70,11 +70,11 @@ export default function AmountCounter() {
           value={Number.isNaN(amount) ? "" : amount}
           onChange={updateAmount}
           onClick={handleInputClick}
-          className="h-full w-20 px-2 border border-black outline-none"
+          className="h-full w-20 2xl:w-40 px-2 border border-black outline-none 2xl:p-2"
         />
         <button
           onClick={incrementAmount}
-          className="h-full w-7 px-2 bg-gray-300 hover:bg-gray-200"
+          className="h-full w-7 2xl:w-14 px-2 rounded-r-xl bg-gray-300 hover:bg-gray-200"
         >
           +
         </button>

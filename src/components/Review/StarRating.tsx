@@ -19,7 +19,7 @@ export default function StarRating({ rating }: StarRatingProps) {
         <svg
           key={index}
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-yellow-500 fill-current"
+          className="h-6 w-6 2xl:h-10 2xl:w-10 text-yellow-500 fill-current"
           viewBox="0 0 24 24"
         >
           <path
@@ -32,7 +32,7 @@ export default function StarRating({ rating }: StarRatingProps) {
       {hasHalfStar && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-yellow-500 fill-current"
+          className="h-6 w-6 2xl:h-10 2xl:w-10 text-yellow-500 fill-current"
           viewBox="0 0 24 24"
         >
           <defs>

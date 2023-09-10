@@ -56,7 +56,6 @@ export default function SearchBar() {
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          //onClick={(e) => setSearch("")}
           className="h-10 w-full px-3 border-y border-l border-black rounded-l-2xl outline-none"
         />
         <button

@@ -90,11 +90,11 @@ export default function SearchBar() {
                   .some((word) => word.startsWith(search.toLowerCase())) //Check each word in the product name if it matches the input value
             )
             .map((product) => (
-              <Link href={`/products/${product.category}/${product.id}`}>
-                <div
-                  key={product.id}
-                  className="p-3 2xl:p-5 border-t border-gray-200 rounded-lg hover:bg-gray-200"
-                >
+              <Link
+                key={product.id}
+                href={`/products/${product.category}/${product.id}`}
+              >
+                <div className="p-3 2xl:p-5 border-t border-gray-200 rounded-lg hover:bg-gray-200">
                   {product.title}
                 </div>
               </Link>

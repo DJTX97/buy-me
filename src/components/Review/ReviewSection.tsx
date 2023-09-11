@@ -1,25 +1,25 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { fetchData } from "@/utils/dataFetchingKit";
-import ProductRating from "./ProductRating";
+import { getRandomUserRating } from "@/utils/dataFakerKit";
+import ProductRating from "./StarRating";
+import ReviewDate from "./ReviewDate";
 
 interface ReviewSectionProps {
-  reviewCount: number;
+  ratingCount: number;
 }
 
 interface Post {
-  id: string;
+  id: number;
   name: string;
   email: string;
   body: string;
 }
 
-const reviewsPerBatch = 5;
-
-export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
+export default function ReviewSection({ ratingCount }: ReviewSectionProps) {
   const [reviews, setReviews] = useState<Array<Post>>([]);
   const contentRef = useRef<HTMLDivElement>(null); // ref to the content container
-  const [next, setNext] = useState<number>(reviewsPerBatch); //reviews to be loaded on next batch
+  const [batch, setBatch] = useState<number>(5); //reviews to be loaded on next batch
 
   const scrollToBottom = () => {
     if (contentRef.current) {
@@ -30,7 +30,7 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
   //load more handler
   const loadMore = () => {
     setTimeout(scrollToBottom, 40);
-    setNext(next + reviewsPerBatch);
+    setBatch(batch * 2);
   };
 
   useEffect(() => {
@@ -39,20 +39,21 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
         `https://jsonplaceholder.typicode.com/comments`
       );
 
-      if (data.length > reviewCount) {
-        setReviews(data.slice(0, reviewCount));
+      if (data.length > ratingCount) {
+        setReviews(data.slice(0, ratingCount));
       } else {
         setReviews(data);
       }
     };
 
     fetchReviews();
-  }, []);
+    //console.log(ratingCount);
+  }, [ratingCount]);
 
   //check for reviews
-  useEffect(() => {
-    console.log(reviews);
-  }, [reviews]);
+  // useEffect(() => {
+  //   console.log(reviews);
+  // }, [reviews]);
 
   //scroll to top on re-render
   useEffect(() => {
@@ -63,9 +64,6 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
     }
   }, []);
 
-  //Get random rating
-  const randomRating = () => Math.floor(Math.random() * 5) + 1;
-
   return (
     <>
       <div className="self-center mt-5 md:m-0 h-[2px] w-11/12 bg-black"></div>
@@ -73,26 +71,34 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
         <div className="mt-3 text-3xl font-extrabold">Reviews</div>
         <div className="flex flex-col gap-8 p-5 font-normal">
           {reviews.length !== 0 ? (
-            reviews.slice(0, next).map((post, index) => (
-              <div className="flex border-b border-slate-300" key={index}>
-                <div className="flex flex-col justify-center gap-2 w-1/6">
-                  <div>
+            reviews.slice(0, batch).map((post, index) => (
+              <div
+                className="flex flex-col md:flex-row p-3 border-b border-slate-300"
+                key={index}
+              >
+                <div className="flex flex-col justify-center gap-2 md:w-1/6">
+                  <div className="">
                     <img
                       src="/assets/user/user-default.png"
-                      className="h-14 border-2 border-slate-300 rounded-full"
+                      className="h-14 2xl:h-24 border-2 border-slate-300 rounded-full"
                       alt="profile"
                     />
                   </div>
-                  <div className="text-base font-bold">
+                  <div className="text-base 2xl:text-3xl font-bold">
                     {post.email.split("@")[0]}
                   </div>
-                </div>
-                <div className="flex flex-col gap-1 w-5/6 pb-5">
-                  <div className="text-xl font-semibold">{post.name}</div>
-                  <div className="flex gap-2 text-base font-bold">
-                    Review: <ProductRating rating={randomRating()} />
+                  <div className="text-xs 2xl:text-xl font-bold opacity-50">
+                    <ReviewDate />
                   </div>
-                  <div className="text-base">{post.body}</div>
+                </div>
+                <div className="flex flex-col gap-1 2xl:gap-5 md:w-5/6 pb-5">
+                  <div className="text-2xl 2xl:text-4xl font-semibold">
+                    {post.name}
+                  </div>
+                  <div className="flex items-center gap-2 text-base 2xl:text-2xl font-bold">
+                    Review: <ProductRating rating={getRandomUserRating()} />
+                  </div>
+                  <div className="text-base 2xl:text-2xl">{post.body}</div>
                 </div>
               </div>
             ))
@@ -100,11 +106,11 @@ export default function ReviewSection({ reviewCount }: ReviewSectionProps) {
             <div>No reviews available</div>
           )}
         </div>
-        {next < reviews.length && (
+        {batch < reviews.length && (
           <div className="flex justify-center py-10 md:py-7 2xl:py-14">
             <button
               onClick={loadMore}
-              className="p-5 bg-black text-white rounded-full hover:bg-gray-700"
+              className="px-20 2xl:px-60 py-5 bg-black text-white rounded-full hover:bg-gray-700"
             >
               Load More
             </button>

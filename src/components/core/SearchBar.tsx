@@ -3,23 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { fetchData } from "@/utils/dataFetchingKit";
-
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
-
+import { Product } from "@/utils/globalTypes";
 
 export default function SearchBar() {
-
   const router = useRouter();
 
   const [products, setProducts] = useState<Array<Product>>([]);
@@ -28,19 +14,17 @@ export default function SearchBar() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await fetchData("https://fakestoreapi.com/products");
-      setProducts(data);
-    }
+      const data = await fetchData("https://dummyjson.com/products?limit=100");
+      setProducts(data.products);
+    };
 
     fetchProducts();
   }, []);
 
-
   // Navigate to product page if input matches product
   const handleButtonClick = () => {
     const matchingProduct = products.find(
-      (product) =>
-        product.title.toLowerCase() === search.toLowerCase()
+      (product) => product.title.toLowerCase() === search.toLowerCase()
     );
 
     if (matchingProduct) {
@@ -66,18 +50,20 @@ export default function SearchBar() {
   //console.log(products);
   return (
     <>
-      <div className="flex w-1/2 bg-white rounded-2xl">
+      <div className="flex w-1/2 bg-white rounded-full">
         <input
           type="text"
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          //onClick={(e) => setSearch("")}
-          className="h-10 w-full px-3 border-y border-l border-black rounded-l-2xl outline-none"
+          className="h-10 2xl:h-16 w-full px-3 2xl:px-6 border-y border-l border-black rounded-l-full 2xl:text-3xl outline-none"
         />
-        <button onClick={handleButtonClick} className="flex justify-center items-center w-12 border-y border-r border-black rounded-r-2xl hover:bg-gray-200">
+        <button
+          onClick={handleButtonClick}
+          className="flex justify-center items-center w-12 2xl:w-20 border-y border-r border-black rounded-r-full hover:bg-gray-200"
+        >
           <svg
-            className="h-4 dark:text-white"
+            className="h-4 2xl:h-6 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -94,7 +80,7 @@ export default function SearchBar() {
         </button>
       </div>
       {search && (
-        <div className="absolute z-10 top-12 left-5 md:left-32 lg:left-64 lg:w-[35rem] rounded-lg bg-white shadow-lg">
+        <div className="absolute z-10 top-14 md:top-16 2xl:top-24 left-5 md:left-32 lg:left-64 2xl:left-[38rem] lg:w-[35rem] rounded-lg bg-white shadow-lg 2xl:text-3xl">
           {products
             .filter(
               (product) =>
@@ -105,7 +91,10 @@ export default function SearchBar() {
             )
             .map((product) => (
               <Link href={`/products/${product.category}/${product.id}`}>
-                <div key={product.id} className="p-3 border-t border-gray-200 rounded-lg hover:bg-gray-200">
+                <div
+                  key={product.id}
+                  className="p-3 2xl:p-5 border-t border-gray-200 rounded-lg hover:bg-gray-200"
+                >
                   {product.title}
                 </div>
               </Link>

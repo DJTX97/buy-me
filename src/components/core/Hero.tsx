@@ -1,18 +1,11 @@
 "use client";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { heroPaths } from "@/utils/externalAssetsHub";
 
 export default function Hero() {
-  const images = [
-    "/assets/hero/woman_sales.jpg",
-    "/assets/hero/discount.jpg",
-    "/assets/hero/cyber-monday-retail-sales.jpg",
-    "/assets/hero/wordcloud2.png",
-    "/assets/hero/Ventura-5Reasons-Featured-r1.jpg",
-  ];
-
   return (
-    <div className="mb-10">
+    <div className="w-full">
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -21,12 +14,12 @@ export default function Hero() {
         infiniteLoop={true}
         className="border-4 border-black rounded-lg"
       >
-        {images.map((image, index) => (
+        {heroPaths.map((image, index) => (
           <div className="h-full sm:h-96 md:h-[35rem] bg-black" key={index}>
             <img
               className="h-full rounded-lg"
               src={image}
-              alt={`Carousel Image ${index}`}
+              alt=""
             />
           </div>
         ))}

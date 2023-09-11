@@ -1,18 +1,24 @@
-import CartButton from "./CartButton";
+import CartButton from "../Cart/CartButton";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between px-5 py-3 bg-slate-500">
+    <div className="sticky top-0 z-10 flex items-center justify-between pl-2 pr-20 py-3 bg-slate-500 shadow-lg">
       <Link href={"/"}>
-        <div className="text-white">BRAND</div>
+        <div className="">
+          <img
+            className="h-12 sm:h-14 md:h-16 2xl:h-28"
+            src="/assets/favicon/brand.png"
+            alt=""
+          />
+        </div>
       </Link>
       <SearchBar />
       <div className="flex gap-10">
         <CartButton />
-
-        <button className="flex items-center gap-2 text-white">
+        {/*FUTURE UPDATE*/}
+        {/* <button className="flex items-center gap-2 text-white">
           <svg
             className="h-6"
             aria-hidden="true"
@@ -29,7 +35,7 @@ export default function Header() {
             />
           </svg>
           <div className="hidden md:block">My account</div>
-        </button>
+        </button> */}
       </div>
     </div>
   );

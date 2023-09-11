@@ -13,7 +13,7 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ product }: ProductPageProps) {
-  console.log(product);
+  //console.log(product);
   return (
     <div className="flex flex-col border border-black bg-white rounded-xl text-2xl font-semibold">
       <div className="p-8 text-3xl md:text-6xl">{product.title}</div>

@@ -20,7 +20,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   const [amount, setAmount] = useAtom(counter);
   const [criteria] = useAtom(selectedFilter);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [results, setResults] = useState(filteredProducts.slice(0, batchSize));
+  const [results, setResults] = useState(filteredProducts ? filteredProducts.slice(0, batchSize) : []);
   const [currentBatch, setCurrentBatch] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,7 +34,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }, [products, criteria]);
 
   useEffect(() => {
-    setResults(filteredProducts.slice(0, initialItemsToShow));
+    setResults(filteredProducts ? filteredProducts.slice(0, initialItemsToShow) : []);
     setCurrentBatch(1);
   }, [filteredProducts]);
 

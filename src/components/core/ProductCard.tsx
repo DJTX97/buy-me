@@ -20,7 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         transition: { duration: 0.5, ease: "easeInOut" },
       }}
       whileHover={{ scale: 1.05, transition: { duration: 0.11 } }}
-      className="relative flex flex-col items-center p-2 border border-black h-96 2xl:h-[46rem] rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white transition-colors duration-110"
+      className="relative flex flex-col items-center p-2 border border-black h-96 lg:h-[28rem] 2xl:h-[46rem] rounded-lg bg-white hover:bg-gray-500 hover:opacity-90 hover:text-white transition-colors duration-110"
     >
       <Link className="h-1/2 2xl:h-[24rem] w-full" href={productPageUrl}>
         <img

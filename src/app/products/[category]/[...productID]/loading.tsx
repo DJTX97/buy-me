@@ -1,5 +1,5 @@
 import ProductPageLoader from "@/components/Skeletons/ProductPageLoader";
 
-export default function loading() {
+export default function Loading() {
   return <ProductPageLoader />;
 }

@@ -1,6 +1,6 @@
 import HomePageLoader from "@/components/Skeletons/HomePageLoader";
 
-export default function loading() {
+export default function Loading() {
   return (
     <HomePageLoader />
   )

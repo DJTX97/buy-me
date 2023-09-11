@@ -14,6 +14,12 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   //console.log(product);
+
+  //Fix for weird production error -> TypeError: Cannot read properties of undefined (reading 'title')
+  if (!product) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col border border-black bg-white rounded-xl text-2xl font-semibold">
       <div className="p-8 text-3xl md:text-6xl">{product.title}</div>
@@ -29,7 +35,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           </div>
           <div className="md:flex items-center gap-2">
             <div className="font-extrabold">Rating:</div>
-            <ProductRating rating={product.rating ?? "N/A"} />{" "}
+            <ProductRating rating={product.rating} />{" "}
             <div className="flex items-center border-b-2 border-black border-dotted text-lg 2xl:text-3xl">
               {product.rating} ({product.reviewCount} reviews)
             </div>

@@ -4,11 +4,13 @@ import { getRandomReviewCount } from "@/utils/dataFakerKit";
 import { redirect } from "next/navigation";
 
 interface Params {
-  category: string;
-  productID: string[];
+  params: {
+    category: string,
+    productID: string[]
+  }
 }
 
-export default async function Product({ params }: { params: Params }) {
+export default async function Product({ params }: Params) {
   const product = await fetchData(
     `https://dummyjson.com/products/${params.productID[0]}`,
     { reviewCount: getRandomReviewCount(20) }

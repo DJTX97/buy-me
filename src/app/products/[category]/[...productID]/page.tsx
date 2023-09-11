@@ -24,5 +24,5 @@ export default async function Product({ params }: { params: Params }) {
     redirect(`/products/${product.category}/${product.id}`);
   }
 
-  return <ProductPage params={params} product={product} />;
+  return <ProductPage product={product} />;
 }

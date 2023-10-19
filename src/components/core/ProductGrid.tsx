@@ -20,7 +20,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
   const [amount, setAmount] = useAtom(counter);
   const [criteria] = useAtom(selectedFilter);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [results, setResults] = useState(filteredProducts ? filteredProducts.slice(0, batchSize) : []);
+  const [results, setResults] = useState(
+    filteredProducts ? filteredProducts.slice(0, batchSize) : []
+  );
   const [currentBatch, setCurrentBatch] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,7 +36,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }, [products, criteria]);
 
   useEffect(() => {
-    setResults(filteredProducts ? filteredProducts.slice(0, initialItemsToShow) : []);
+    setResults(
+      filteredProducts ? filteredProducts.slice(0, initialItemsToShow) : []
+    );
     setCurrentBatch(1);
   }, [filteredProducts]);
 
@@ -54,9 +58,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
 
         // Simulate loading delay
         //setTimeout(() => {
-          setResults((prevResults) => [...prevResults, ...nextBatch]);
-          setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
-          setIsLoading(false);
+        setResults((prevResults) => [...prevResults, ...nextBatch]);
+        setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
+        setIsLoading(false);
         //}, 500);
       } else if (!hasMoreBatches) {
         setIsLoading(false);

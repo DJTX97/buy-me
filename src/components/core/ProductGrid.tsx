@@ -9,7 +9,7 @@ import { Product } from "@/utils/globalTypes";
 import Spinner from "./Spinner";
 
 interface ProductGridProps {
-  products: Product[];
+  products: Product[] | undefined;
 }
 
 const batchSize = 4; // set item batch size
@@ -18,10 +18,9 @@ const initialItemsToShow = batchSize * initialBatches; //calculate number of ini
 const threshold = 200; // set scrolling threshold for loading new items
 
 export default function ProductGrid({ products }: ProductGridProps) {
-
   const [amount, setAmount] = useAtom(counter); //get product amount for adding to cart
   const [criteria] = useAtom(selectedFilter); //get selected filter
-  const [filteredProducts, setFilteredProducts] = useState(products); //track filtered products array
+  const [filteredProducts, setFilteredProducts] = useState(products ?? []); //track filtered products array
   const [results, setResults] = useState(filteredProducts); //track final results to display
   const [currentBatch, setCurrentBatch] = useState(initialBatches); //track current batch
   const [isLoading, setIsLoading] = useState(false); //track loading state
@@ -32,8 +31,10 @@ export default function ProductGrid({ products }: ProductGridProps) {
   }, []);
 
   useEffect(() => {
-    setCurrentBatch(initialBatches); //reset current batch after filter change
-    setFilteredProducts(productFilter(products, criteria)); //reset filtered products after filter change
+    if (products) {
+      setCurrentBatch(initialBatches); //reset current batch after filter change
+      setFilteredProducts(productFilter(products, criteria)); //reset filtered products after filter change
+    }
   }, [products, criteria]);
 
   useEffect(() => {

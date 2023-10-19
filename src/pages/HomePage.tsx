@@ -4,7 +4,7 @@ import ProductFilterBar from "@/components/ProductFiltering/ProductFilterBar";
 import { Product } from "@/utils/globalTypes";
 
 interface HomePageProps {
-  data: Product[];
+  data: Product[] | undefined;
 }
 
 export default function HomePage({ data }: HomePageProps) {

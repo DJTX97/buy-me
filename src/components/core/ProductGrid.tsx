@@ -9,42 +9,47 @@ import { Product } from "@/utils/globalTypes";
 import Spinner from "./Spinner";
 
 interface ProductGridProps {
-  products: Product[];
+  products: Product[] | undefined;
 }
 
-const initialItemsToShow = 8;
-const batchSize = 4;
-const threshold = 200; // Adjust this value as per your requirements
+const batchSize = 4; // set item batch size
+const initialBatches = 2; //set number of initial batches to load
+const initialItemsToShow = batchSize * initialBatches; //calculate number of initial items to show
+const threshold = 200; // set scrolling threshold for loading new items
 
 export default function ProductGrid({ products }: ProductGridProps) {
-  const [amount, setAmount] = useAtom(counter);
-  const [criteria] = useAtom(selectedFilter);
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [results, setResults] = useState(filteredProducts ? filteredProducts.slice(0, batchSize) : []);
-  const [currentBatch, setCurrentBatch] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [amount, setAmount] = useAtom(counter); //get product amount for adding to cart
+  const [criteria] = useAtom(selectedFilter); //get selected filter
+  const [filteredProducts, setFilteredProducts] = useState(products ?? []); //track filtered products array
+  const [results, setResults] = useState(filteredProducts); //track final results to display
+  const [currentBatch, setCurrentBatch] = useState(initialBatches); //track current batch
+  const [isLoading, setIsLoading] = useState(false); //track loading state
 
+  //Set default amount for cart
   useEffect(() => {
     setAmount(1);
   }, []);
 
   useEffect(() => {
-    setFilteredProducts(productFilter(products, criteria));
-    setCurrentBatch(1);
+    if (products) {
+      setCurrentBatch(initialBatches); //reset current batch after filter change
+      setFilteredProducts(productFilter(products, criteria)); //reset filtered products after filter change
+    }
   }, [products, criteria]);
 
   useEffect(() => {
-    setResults(filteredProducts ? filteredProducts.slice(0, initialItemsToShow) : []);
-    setCurrentBatch(1);
+    setResults(
+      filteredProducts ? filteredProducts.slice(0, initialItemsToShow) : []
+    ); //reset the final results array when the filter changes
   }, [filteredProducts]);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition =
-        window.innerHeight + document.documentElement.scrollTop;
-      const documentHeight = document.documentElement.offsetHeight;
-      const isReachedThreshold = scrollPosition >= documentHeight - threshold;
-      const hasMoreBatches = currentBatch * batchSize < filteredProducts.length;
+        window.innerHeight + document.documentElement.scrollTop; //calculate scroll position
+      const documentHeight = document.documentElement.offsetHeight; //get document height
+      const isReachedThreshold = scrollPosition >= documentHeight - threshold; //check if the scrolling threshold is reached
+      const hasMoreBatches = currentBatch * batchSize < filteredProducts.length; //calculate if there are more batches to load
 
       if (isReachedThreshold && !isLoading && hasMoreBatches) {
         setIsLoading(true);
@@ -54,9 +59,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
 
         // Simulate loading delay
         //setTimeout(() => {
-          setResults((prevResults) => [...prevResults, ...nextBatch]);
-          setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
-          setIsLoading(false);
+        setResults((prevResults) => [...prevResults, ...nextBatch]);
+        setCurrentBatch((prevBatchNumber) => prevBatchNumber + 1);
+        setIsLoading(false);
         //}, 500);
       } else if (!hasMoreBatches) {
         setIsLoading(false);
